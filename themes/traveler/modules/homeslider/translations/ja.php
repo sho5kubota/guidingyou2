@@ -1,0 +1,33 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{homeslider}traveler>homeslider_693b83f5eca43e2bb1675287c37ce9e2'] = 'ホームページの画像スライダー';
+$_MODULE['<{homeslider}traveler>homeslider_c17aed434289cedd02618451e12c8da6'] = 'ホームページにイメージスライダーを追加';
+$_MODULE['<{homeslider}traveler>homeslider_3f80dc2cdd06939d4f5514362067cd86'] = '値が無効';
+$_MODULE['<{homeslider}traveler>homeslider_a6abafe564d3940cc36ee43e2f09400b'] = 'スライドが無効';
+$_MODULE['<{homeslider}traveler>homeslider_e0ce30bfbf90d2306ecf72f06a83133f'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_9f79795e050649dc6b8bd0cdc874cbdc'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_5c8bedc4c0c9f42d9b0f14340bbe53da'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_14f09fd0804a8f1cd0eb757125fc9c28'] = 'タイトルは長過ぎます';
+$_MODULE['<{homeslider}traveler>homeslider_dc89634d1d28cd4e055531e62047156b'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_4477f672766f6f255f760649af8bd92a'] = 'URLは長過ぎます';
+$_MODULE['<{homeslider}traveler>homeslider_62239300ba982b06ab0f1aa7100ad297'] = '説明は長過ぎます';
+$_MODULE['<{homeslider}traveler>homeslider_980f56796b8bf9d607283de9815fe217'] = 'URLフォーマットは正しくありません';
+$_MODULE['<{homeslider}traveler>homeslider_73133ce32267e8c7a854d15258eb17e0'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_349097dadf7e6b01dd2af601d54fd59a'] = 'タイトルはセットしていません';
+$_MODULE['<{homeslider}traveler>homeslider_a9af2809b02444b9470f97dc66ba57a2'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_0f059227d0a750ce652337d911879671'] = 'URLはセットしていません';
+$_MODULE['<{homeslider}traveler>homeslider_8cf45ba354f4725ec8a0d31164910895'] = '画像はセットされていません';
+$_MODULE['<{homeslider}traveler>homeslider_7f82c65d548588c8d5412463c182e450'] = '設定は更新することができませんでした';
+$_MODULE['<{homeslider}traveler>homeslider_20015706a8cbd457cbb6ea3e7d5dc9b3'] = '設定を更新しました';
+$_MODULE['<{homeslider}traveler>homeslider_7cc92687130ea12abb80556681538001'] = '画像取得中にエラーが発生';
+$_MODULE['<{homeslider}traveler>homeslider_cdf841e01e10cae6355f72e6838808eb'] = 'スライドは追加することができませんでした';
+$_MODULE['<{homeslider}traveler>homeslider_eb28485b92fbf9201918698245ec6430'] = 'スライドは更新することができませんでした';
+$_MODULE['<{homeslider}traveler>homeslider_b9f5c797ebbf55adccdd8539a65a0241'] = '無効';
+$_MODULE['<{homeslider}traveler>homeslider_00d23a76e43b46dae9ec7aa9dcbebb32'] = '有効';
+$_MODULE['<{homeslider}traveler>homeslider_ced7338587c502f76917b5a693f848c5'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_792744786ed30c5623dd1cf0c16f4ffe'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_b112d8dc41120e6d28639b7eb825f491'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_61c1727eb4c54b859e250c2a76bb40c0'] = '';
+$_MODULE['<{homeslider}traveler>homeslider_e64df1d7c22b9638f084ce8a4aff3ff3'] = '';

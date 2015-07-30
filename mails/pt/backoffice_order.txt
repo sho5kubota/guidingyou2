@@ -1,0 +1,13 @@
+
+[{shop_url}] 
+
+Olá {firstname} {lastname}, 
+
+Uma nova encomenda foi gerada em seu nome. 
+
+Por favor, siga o link {order_link} [{order_link}]
+para finalizar o pagamento. 		 
+
+{shop_name} [{shop_url}] usa a plataforma
+PrestaShop(tm) [http://www.prestashop.com/] 
+

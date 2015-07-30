@@ -1,0 +1,1 @@
+<li><a href="#idTab12" class="idTabHrefShort">{l s='Seller Q&A' mod='agilesellermessenger'}</a></li>

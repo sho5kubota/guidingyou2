@@ -1,0 +1,116 @@
+﻿Version 1.6.4.2 - 2015.02.22
+- Fixed bug - a bug appear in new version of PrestaShop, when customer change carrier at Express Checkout screen, the payment was executed correctly , but when order is generated, it use the default carrier instead of the one customer carrier, so it will cause an "Payment Error".
+
+
+Version 1.6.4.1 - 2015.01.15
+- Changed configuration screen to PrestaShop 1.6x standard
+- Changed use new hook name standard in PrestaShop 1.6x
+- Change to use customer IP address to determine country as default selected country for express checkout customer location.
+
+Version 1.6.3.0 - 2014.10.23
+- Changed to use choose Paypal account currency at module configuration and use checkbox(multiple currency) for payment currency restrictions
+
+Version 1.6.2.0 - 2014.10.17
+- Changed to use SSL4 when verify IPN data with Paypal.
+- Changed to use new hook name of PrestaShop 1.6x instead of using hook name alias
+
+Version 1.6.1.0 - 2014.09.27
+- Fixed the module appearance at Payment page when configured as "For membership payment only" - it did not show up even when shopping cart contains membership products only.
+- Improvements: when you choose "Integrate with membership module", if shopping cart contains membership product only, then it will hide all other payments and show "Agile Paypal" only.
+- Fixed a few text translations issues(some text in agilepaypalbase file was not able to be translated)
+- Fixed an potential issue related shipping carrier when user choose a country that is different from his country of Paypal account for payment.
+
+Version 1.6.0.3 - 2014.06.26
+- compatible with Smart Cache Javascript and Smart Cache for CSS
+- Fixed an issue with multiple Currency conversion issue at PS 1.6x
+
+Version 1.6.0.2 - 2014.06.01
+- The customer phone number will also be transferred to customer address when customer uses Express Checkout.
+- Fixed bug - Shipping fee displaying incorrect at express checkout screen - shipping handling is incorrect in some scenario.
+- Fixed Bug - Customer selected carrier at Express Checkout was displayed wrongly as default c
+
+Version 1.6.0.0 - 2014.04.19
+- support/cmpatible with PrestaShop 1.6x
+- support responsive theme design 
+- fixed shipping fee displaying issue when configured using "customer currency" as payment currency restrictions.
+- fixed a bug at Membership Inetgration, the "Subscribe" button at membership page when choose one time only - it redirect to incorrect Paypal address 
+(confgigured to allow customer to choose repeating times)
+
+
+Version 1.5.8.1 - 2013.12.17
+- fixed an link issue at normal payment for PrestaShop 1.5x 
+- fixed Terms & Conditions checkbox conflict with same checkout of Once page Checkout 
+- fixed a url of return url at PrestaShop 1.5.4
+- New feature - Integrated with Agile Membership module
+- fixed an issue that free shipping does not show up at drop down-list
+- fixed an issue related to recurring payment, It seems that Paypal changed to use the same txn_type 'subscr_payment' for both first time payment and recurring payment. It was using 'recurring_payment' txn_type before.
+.configuration options to choose integrate with membership or not
+.choose to show "Subscribe" button at membership product page - direct send user to Paypal for payment.
+.option to choose prevent shopping cart from mixing of membership products or other normal product
+.option to choose to set repeating "until cancel" or allow customer to choose repeat time.
+.option to choose disable this module for non membership product payment.
+
+version 1.5.6 - 2013.04.07
+- Fixed an issue at PrestaShop 1.5 voucher. When there is discount voucher(cart rules), the discount is not passed to Paypal correctly. (This is only happens at version 1.5.0 of this module)
+- Integrated with new released Agile Multiple Shop module which allow each seller to have a virtual shop, virtual directory and seperated themes.
+- Fixed an issue when customer changed shipping address at Paypal side during payment. The issue appear only when existing customer using the same paypal account and from 2nd order.
+- Seller is able to choose each payment module to use it or not. The llatest version of Agile Multiple Seller is required
+- Adjusted and tested for PrestaShop 1.5.4.0.
+- Seller is able to choose each payment module to use it or not. The llatest version of Agile Multiple Seller is required.
+- Adjusted and tested for PrestaShop 1.5.4.0
+
+Version 1.5.0(2012.09.20)
+- Implemented one cart multiple payment at Seller Collects Payment mode.If a cart contains products from multiple sellers, it will be splitted into multiple subcarts(one cart for one seller) and perform payment per seller.This function is only valid when you Payment Collection Mode is Seller collects payment. This feature needs to be used in Agile Multiple Seller/Vendor module.
+- Adjusted to compatible with PrestaShop 1.5x 
+
+Version 1.4.4.0 (2012.08.06)
+--Integration with the Agile Membership module so that it will be automatically preset the recurring parameters to avoid confusing the user to choose period and length of recurring payment subscription.
+- Now it is possible to list all items in details even when you have a discount voucher/coupon in an order. (Before, it can only show total summary without detailed item list if there is discount voucher/coupon, because of Paypal limitation)
+
+Version 1.4.3.9 (2011.05.07)
+- Fixed shipping fee issue becuase of Paypal side parameter changed.(shipping1_1 to handling_cart)
+- The module has been adjusted and test under PrestaShop 1.5 beta (1.5.0.9)
+
+Version 1.4.3 (2011.11.25)
+- Fixed a bug when existing customer use Express Checkout, there is secure key error at order validation
+- Integrated with Agile Seller Commission module so that it can handle commission at Agile Multiple Seller module is at \"Seller collect payments\" mode
+- Fixed a bug when existing customer use Express Checkout, there is secure key error at order validation
+- Fixed issue when cart block is on left column, and customer choose to use currency other than USD/CAD, the total amount will be included currency sign, that cause Paypal error.
+- Integrated into seller commission module
+- This module is now configurable to enable or disable the Express Checkout feature. (some customer requested to disable the Express Checkout feature for some special reason)[2012.02.10]
+
+version 1.4.2 (2011.10.29)
+- Fixed a wanring message at order message section
+- Integrated Redirect/Subscription page into main page with header/footer/left/right columns.
+- Use a animated image show the progress while redirecting to Paypal - looks more prefessional
+- Use Ajax way to update carriers/country/state at Express Checkout - no page refresh any more, quick and fast
+
+Version 1.3 (2011.08.05)
+- Integrated to Agile Multiple Seller/Vendor modiule, make it possible for seller to collect sales.
+- Recurring payment is also available when use normal checkout process (not in express checkout)
+- When recurring payemt enabled, automatically show/hide recurring cycles based on user\'s selection of recurring or not.
+- Change the module to use normal checkout module mode UI instead of express checkout mode Ui
+
+Version 1.2 
+- bug fixes for error at 1.4 (switch to use iframe instead of thickboc)
+- bug fixes error message when no module restriction currency setting
+- Recurring payment function 
+- A new table is added to recorded Paypal TXN and cart, order related
+- Recurring payment is available at express checkout mode
+
+Version 1.1
+- Configurable country selection for single country shipping
+- Support state selection for express checkout
+- Supprt carrier selection for express checkout
+- Hide carrier configurable, reduced initial page refresh 
+
+Version 1.0
+- Breakdown product detailed information at Paypal payment page.(See below screen image)
+- PrestaShop Paypal Express Checkout module supports both express checkout and normal checkout.
+- PrestaShop Paypal Express Checkout will ask customer to agree on “Terms And Conditions” before redirecting to payment.
+- PrestaShop Paypal Express Checkout will create a new account automatically with information posted from Paypalfor the 1st order of the customer. Customer will receive “Welcome” email and “Order confirmation” email as usual.
+- PrestaShop Paypal Express Checkout will link orders to existing customers by Paypal account email address from 2nd order of same customer.
+- PrestaShop Paypal Express Checkout will create a new state if the address posted back from Paypal contains state which is not found in store database. And also an alert email will be sent to store Owner
+- PrestaShop Paypal Express Checkout is very easy to install and configure. Only need to changes 1 line each in two existing file.
+- No SSL is required, but it also works with SSL site.
+- Avoid address configuration errors because of no “state”.

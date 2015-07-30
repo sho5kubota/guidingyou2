@@ -1,0 +1,64 @@
+#languages-block-top {
+  float: right;
+  border-left: 0px solid #515151;
+  position: relative; }
+  @media (max-width: 479px) {
+    #languages-block-top {
+      width: 25%; } }
+  #languages-block-top span.firstWord {
+    display: none; }
+  #languages-block-top div.current {
+    font: 300 13px/22px "Open Sans", sans-serif;
+    padding: 8px 10px 10px 10px;
+    line-height: 18px;
+/**    color:#eec98f; **/
+    color:#ffffff;
+    cursor: pointer; }
+    @media (max-width: 479px) {
+      #languages-block-top div.current {
+        text-align: center;
+        padding: 9px 5px 10px;
+        font-size: 11px; } }
+    #languages-block-top div.current strong {
+/**      color: #eec98f;  } **/
+      color: #ffffff;  } 
+    #languages-block-top div.current:after {
+      content: "\f107";
+      font-family: "FontAwesome";
+      font-size: 14px;
+      line-height: 18px;
+      color: #fff;
+      vertical-align: -2px;
+      padding-left: 12px; }
+      @media (max-width: 479px) {
+        #languages-block-top div.current:after {
+          padding-left: 2px;
+          font-size: 13px;
+          line-height: 13px;
+          vertical-align: 0; } }
+    @media (max-width: 479px) {
+      #languages-block-top div.current .cur-label {
+        display: none; } }
+  #languages-block-top ul {
+    display: none;
+    position: absolute;
+	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0, 0.05);
+    top: 37px;
+    left: 0;
+    width: 157px;
+	border-bottom:2px solid #11a8ab;
+        background: #282f4c;
+    z-index: 2; }
+    #languages-block-top ul li {
+      color: white;
+	    font: 300 13px/22px "Roboto", sans-serif;
+      line-height: 35px;
+      font-size: 13px; }
+      #languages-block-top ul li a,
+      #languages-block-top ul li > span {
+        padding: 0 10px 0 12px;
+        display: block;
+        color: white; }
+      #languages-block-top ul li.selected, #languages-block-top ul li:hover a {
+/**        background: #282f4c; color:#eec98f;  } **/
+        background: #282f4c; color:#656565;  } 

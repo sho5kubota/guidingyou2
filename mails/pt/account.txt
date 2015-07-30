@@ -1,0 +1,30 @@
+
+[{shop_url}] 
+
+Olá {firstname} {lastname},
+
+Obrigado por ter criado uma conta de cliente em {shop_name}. 
+
+Estes são os seus dados para autenticação:
+
+ENDEREÇO DE E-MAIL: {email}
+
+PALAVRA PASSE: {passwd} 		 
+
+Notas Importantes de Segurança:
+
+* Mantenha sempre em segurança os detalhes da sua conta.
+
+* Nunca divulgue a terceiros os detalhes do seu login.
+
+* Altere regularmente a palavra passe.
+
+* Se suspeitar que alguém está a usar ilegalmente a sua conta, por
+favor, avise-nos imediatamente.
+
+Agora já pode colocar encomendas na nossa loja: {shop_name}
+[{shop_url}] 
+
+{shop_name} [{shop_url}] usa a plataforma
+PrestaShop(tm) [http://www.prestashop.com/] 
+

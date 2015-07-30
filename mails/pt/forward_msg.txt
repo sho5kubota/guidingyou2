@@ -1,0 +1,14 @@
+
+[{shop_url}] 
+
+Olá {firstname} {lastname}, 
+
+{employee} pretende encaminhar esta(s) mensagem(s) para sí. 
+
+HISTÓRICO DA DISCUSSÃO: {messages}
+
+{employee}foi acrescentado "{comment}" 		 
+
+{shop_name} [{shop_url}] usa a plataforma
+PrestaShop(tm) [http://www.prestashop.com/] 
+

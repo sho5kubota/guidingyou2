@@ -1,0 +1,134 @@
+﻿.payment_module {
+ margin-bottom: 10px; }
+ .payment_module .agile_paypal {
+    display: block;
+    border: 1px solid #d6d4d4;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 17px;
+    line-height: 23px;
+    color: #333333;
+    font-weight: bold;
+    padding: 33px 40px 34px 99px;
+    letter-spacing: -1px;
+    position: relative; }  
+ .payment_module .agile_paypal {
+      background: url(../img/agilepaypal.png) 15px 12px no-repeat #fbfbfb; }
+.payment_module .agile_paypal:after {
+      display: block;
+      content: "\f054";
+      position: absolute;
+      right: 15px;
+      margin-top: -11px;
+      top: 50%;
+      font-family: "FontAwesome";
+      font-size: 25px;
+      height: 22px;
+      width: 14px;
+      color: #777777; }
+.expresscheckout_id_country {
+    margin:5px 5px 5px 35px; 
+}
+.expresscheckout_id_state {
+    margin:5px 5px 5px 35px;
+}
+
+.expresscheckout_id_carrier {
+    margin:5px 5px 5px 35px;
+}
+
+.expresscheckout_recurringpayment {
+    margin:5px 5px 5px 35px;
+}
+
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+
+.agilesubscribe:hover {
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007ab7), color-stop(100%, #009ad0));
+      background-image: -webkit-linear-gradient(#007ab7, #009ad0);
+      background-image: -moz-linear-gradient(#007ab7, #009ad0);
+      background-image: -o-linear-gradient(#007ab7, #009ad0);
+      background-image: linear-gradient(#007ab7, #009ad0);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007ab7', endColorstr='#009ad0',GradientType=0 );
+      background-position: 0 0; }
+
+.agilesubscribe:before {
+    content: "\f09d";
+    font: 400 15px/31px "FontAwesome";
+      position: relative;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      color: white;
+      font-size: 25px;
+      line-height: 47px;
+      text-shadow: 0 1px #015883;
+      z-index: 2;
+      width: 51px;
+      text-align: center;
+      border: none;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0; }
+
+.agilesubscribe {
+    padding-left: 5px;
+    padding-right:5px;
+    border-top: 1px solid #0079b6;
+    border-right: 1px solid #006fa8;
+    border-left: 1px solid #006fa8;
+    border-bottom: 1px solid #012740;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #009ad0), color-stop(100%, #007ab7));
+    background-image: -webkit-linear-gradient(#009ad0, #007ab7);
+    background-image: -moz-linear-gradient(#009ad0, #007ab7);
+    background-image: -o-linear-gradient(#009ad0, #007ab7);
+    background-image: linear-gradient(#009ad0, #007ab7);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#009ad0', endColorstr='#007ab7',GradientType=0 ); }
+
+ .agilesubscribe span {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 22px;
+      border-top: 1px solid #06b2e6;
+      border-right: 1px solid #06b2e6;
+      border-left: 1px solid #06b2e6;
+      border-bottom: 1px solid #06b2e6;
+      text-shadow: 0 1px #015883;
+      color: white;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease; }
+
+ .agilesubscribe:after {
+          display: none; } 
+ 
+ .bootstrap .sep hr{
+	margin-top:1px;
+	margin-bottom:1px;
+    background-color: black; 
+    height: 1px; 
+    border: 0;
+}
+
+.agile-radio-checkbox {
+    padding-left: 2em;
+}

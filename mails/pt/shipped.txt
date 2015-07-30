@@ -1,0 +1,19 @@
+
+[{shop_url}] 
+
+Olá {firstname} {lastname},
+
+Your order has been shipped 
+
+A sua encomenda com a referência {order_name} já foi enviada.
+
+Obrigado por fazer compras na {shop_name}! 		 
+
+Pode rever a sua encomenda e fazer download da sua fatura apartir
+da seção "Histórico de encomendas" [{history_url}]
+da sua conta de cliente clicando em "A minha conta"
+[{my_account_url}] na nossa loja. 
+
+{shop_name} [{shop_url}] usa a plataforma
+PrestaShop(tm) [http://www.prestashop.com/] 
+

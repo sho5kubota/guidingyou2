@@ -1,0 +1,8 @@
+<?php
+///-build_id: 2015022208.5429
+
+///-build_id: 1365383421
+
+
+global $_MODULE;
+$_MODULE = array();

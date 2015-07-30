@@ -1,0 +1,20 @@
+How to install on PrestaShop
+=============================================
+1. Login to PrestaShop back office and click Modules tab
+2. Click "Add a module from my computer" and choose the module package you have downlaoded and click "Upload this module"
+3. Input "agile" in the search bix of Module page and select "Agile Paypal"
+4. Click "install" link under the module, the module will be installed automatically.
+5. Click "Configure" link under the module, it will bring you to the module configuration screen
+
+For more detailed installation guide, pelase visit here.
+http://addons-modules.com/store/en/content/35-how-to-install-a-agile-prestashop-moudule
+
+Notes:
+=====
+1. cURL must be installed and enabled on your server.
+2. You have to enable IPN at your Paypal accout. If you have not done it yet. please enable it.
+
+
+If you have an issue of "Payment Module not found" when using "Customer Currency", pleaase check here on how to fix this
+(It is a bug of PrestaShop in earliar version of 1.5x)
+https://github.com/PrestaShop/PrestaShop/pull/768/files
