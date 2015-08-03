@@ -23,7 +23,14 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=240897485974930";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <section id="social_block">
 	<ul>
 		{if $facebook_url != ''}
@@ -31,6 +38,11 @@
 				<a target="_blank" href="{$facebook_url|escape:html:'UTF-8'}">
 					<span>{l s='Facebook' mod='blocksocial'}</span>
 				</a>
+			</li>
+			<li class="facebook">
+				<div style="margin-top:10px; margin-left: 25px;">
+				<div class="fb-like" data-href="https://www.facebook.com/guiding.you.around.world" data-layout="button_count" data-action="like" data-show-faces="true" ></div>
+				</div>
 			</li>
 		{/if}
 		{if $twitter_url != ''}

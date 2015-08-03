@@ -298,6 +298,12 @@ class SellerInfo extends ObjectModel
 		return $logo;
 
 	}
+    public function get_seller_logo_url2() {
+		$logo = self::get_seller_logo_url_static2( $this->id );
+
+		return $logo;
+
+	}	
 
 	public  function get_seller_license_url() {
 		return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "img/as/" . $this->id . "_license";
@@ -321,22 +327,37 @@ class SellerInfo extends ObjectModel
 
 		$active = explode('/', ${${"GLOBALS"}["sgqhktmtycj"]});
 		$activeImg = end($active);
-		 // echo 'GET SELLER LOGO: <h4>'. ${${"GLOBALS"}["sgqhktmtycj"]}  . '</h4><br/>';
-		/*if ( file_exists( ${${"GLOBALS"}["sgqhktmtycj"]} ) )
-			echo 'ALEX YES!';
-		else
-			echo 'ALEX NO!';*/
-
+		
 		if(is_dir( ${${"GLOBALS"}["sgqhktmtycj"]} ))
-			return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en-nologo.png";
+			return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en_nologo.jpg";
 		else {
 			if ( file_exists( ${${"GLOBALS"}["sgqhktmtycj"]} ) )
 				return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "img/as/" . ${${"GLOBALS"}["ngzhniutoqka"]} . '/' . $activeImg;
 			else
-				return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en-nologo.png";
+				return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en_nologo.jpg";
 				// return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/" . $lang->iso_code . "-nologo.png";
 		}
 	}
+	public static function get_seller_logo_url_static2( $id_sellerinfo ) {
+
+		global $cookie;
+		${"GLOBALS"}["nhosflhjk"]			= "id_sellerinfo";
+		${${"GLOBALS"}["uwncnbul"]} 		= new Language( $cookie->id_lang );
+		${${"GLOBALS"}["sgqhktmtycj"]}    	= self::seller_logo_physical_path( ${${"GLOBALS"}["nhosflhjk"]} );
+
+		$active = explode('/', ${${"GLOBALS"}["sgqhktmtycj"]});
+		$activeImg = end($active);
+		
+		if(is_dir( ${${"GLOBALS"}["sgqhktmtycj"]} ))
+			return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en-nologo_register.png";
+		else {
+			if ( file_exists( ${${"GLOBALS"}["sgqhktmtycj"]} ) )
+				return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "img/as/" . ${${"GLOBALS"}["ngzhniutoqka"]} . '/' . $activeImg;
+			else
+				return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/en-nologo_register.png";
+				// return Tools::getShopDomainSsl( true ) . __PS_BASE_URI__ . "modules/agilemultipleseller/images/" . $lang->iso_code . "-nologo.png";
+		}
+	}	
 
 
 	public static function get_seller_logo_url_static_sellers( $id_sellerinfo ) {

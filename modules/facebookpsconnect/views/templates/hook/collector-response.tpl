@@ -1,0 +1,1 @@
+{if !empty($sResponse)}{$sResponse}{/if}

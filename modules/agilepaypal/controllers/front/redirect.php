@@ -22,7 +22,7 @@ class AgilePaypalRedirectModuleFrontController extends ModuleFrontController {
 
         foreach ($this->context->cart->getProducts() as $key => $prod) {
         	$product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $this->context->cart->getProducts());
-			$id_land = $this->context->language->id;   // get current language id , if you are in order page you can use this
+			$id_land = 1;   // get current language id , if you are in order page you can use this
 			$template_name = 'order_conf_2';  // this is file name here the file name is test.html                                           
 			$title = "New Paypal Order";    // mail title 
 			$templateVars['{firstname}'] = "Guiding-you Administrator";  
@@ -36,7 +36,7 @@ class AgilePaypalRedirectModuleFrontController extends ModuleFrontController {
 			$templateVars['{total_paid}'] = $prod['total'];
 			$templateVars['{customer_id}'] = $this->context->customer->id;
 			$templateVars['{order_name}'] = $this->context->customer->firstname . ' ' . $this->context->customer->lastname;
-			$to = "webmaster@guiding -you.co";
+			$to = "webmaster@guiding-you.co"; // $to = "webmaster@guiding-you.co";
 			$toName = "Guidingyou Admin";
 			$from = $this->context->customer->email;
 			$fromName = $this->context->customer->firstname . ' ' . $this->context->customer->lastname;
