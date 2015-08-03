@@ -17,34 +17,10 @@
                     {assign var="activeimgincat" value='0'}
                     {$activeimgincat = $smartshownoimg} 
                     {if ($post_img != "no" && $activeimgincat == 0) || $activeimgincat == 1}
-                        <a id="post_images" href="{$modules_dir}/smartblog/images/{$id_author}/{$post_img}-single-default.jpg"><img src="{$modules_dir}/smartblog/images/{$id_author}/{$post_img}-single-default.jpg" alt="{$meta_title}"></a>
+                        <a id="post_images" href="{$modules_dir}/smartblog/images/{$post_img}-single-default.jpg"><img src="{$modules_dir}/smartblog/images/{$post_img}-single-default.jpg" alt="{$meta_title}"></a>
                     {/if}
              </div>
-
-             <style>
-				.videoWrapper {
-					position: relative;
-					padding-bottom: 56.25%; /* 16:9 */
-					padding-top: 25px;
-					height: 0;
-				}
-				.videoWrapper iframe {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-				}
-			</style>
-
-       
-				<div class="videoWrapper">
-					{$youtube}
-				</div>
-		
-
             <div class="sdsarticle-des">
-
                {$content}
             </div>
             {if $tags != ''}

@@ -36,7 +36,7 @@
 				<!-- Footer -->
 				<div class="footer-container">
 					<footer id="footer"  class="container">
-						<div class="row">{$HOOK_FOOTER}{hook h="facebookLike"} </div>
+						<div class="row">{$HOOK_FOOTER}</div>
 					</footer>
 
 <p style="margin-top:-80px; padding-bottom:20px; text-align:center; color: #ebebeb;">© 2015 Guiding You Limited. All Rights Reserved.</p>

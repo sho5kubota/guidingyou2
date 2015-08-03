@@ -55,8 +55,8 @@
 	<div class="pop_tours">
 	{getBelvgBlockContent id="poptour-title"}
 	<ul class="slider_popular_tours">
-	<li><a href="./search?controller=search&orderby=position&orderway=desc&search_loc=usa">{getBelvgBlockContent id="p2"}</a></li>
 	<li><a href="./search?controller=search&orderby=position&orderway=desc&search_loc=japan">{getBelvgBlockContent id="p1"} </a></li>
+	<li><a href="./search?controller=search&orderby=position&orderway=desc&search_loc=usa">{getBelvgBlockContent id="p2"}</a></li>
 	<li><a href="./search?controller=search&orderby=position&orderway=desc&search_loc=china">{getBelvgBlockContent id="p5"} </a></li>
 <!--{**
 	<li><a href="./search?controller=search&orderby=position&orderway=desc&search_loc=italy">{getBelvgBlockContent id="p3"} </a></li>

@@ -565,7 +565,7 @@
 		<div class="agile-col-sm-7 agile-col-md-7 agile-col-lg-7 agile-col-xl-7">
 			<div class="row">
 				<div class="agile-col-sm-9 agile-col-md-9 agile-col-lg-9 agile-col-xl-9 ">
-					<img src="{$sellerinfo->get_seller_logo_url()}" alt="{l s='Your Logo' mod='agilemultipleseller'}" class="agile-col-xs-8 agile-col-sm-8 agile-col-md-8 agile-col-lg-8 thumbnail" title="{l s='Your Logo' mod='agilemultipleseller'}" id="seller_logo" name="seller_logo" />
+					<img src="{$sellerinfo->get_seller_logo_url2()}" alt="{l s='Your Logo' mod='agilemultipleseller'}" class="agile-col-xs-8 agile-col-sm-8 agile-col-md-8 agile-col-lg-8 thumbnail" title="{l s='Your Logo' mod='agilemultipleseller'}" id="seller_logo" name="seller_logo" />
 
 				</div>
 			</div>

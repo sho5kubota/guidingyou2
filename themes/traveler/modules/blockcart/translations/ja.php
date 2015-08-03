@@ -47,7 +47,6 @@ $_MODULE['<{blockcart}traveler>blockcart_98b3009e61879600839e1ee486bb3282'] = 'C
 $_MODULE['<{blockcart}traveler>blockcart_544c3bd0eac526113a9c66542be1e5bc'] = 'サービスがカートに追加されました';
 $_MODULE['<{blockcart}traveler>blockcart_694e8d1f2ee056f98ee488bdc4982d73'] = '人数';
 $_MODULE['<{blockcart}traveler>blockcart_076345bf465c0f00c379f2add99b9cef'] = '予約日';
-$_MODULE['<{blockcart}traveler>blockcart_5be0fabaab8bf9ac47226a4afec82698'] = '';
 $_MODULE['<{blockcart}traveler>blockcart_e5694b7726ceaf2f057e5f06cf86209e'] = ' [1]%d[/1] つのサービスがカートにあります';
 $_MODULE['<{blockcart}traveler>blockcart_fc86c43dbffcadc193832a310f7a444a'] = '１つのサービスがカートにあります';
 $_MODULE['<{blockcart}traveler>blockcart_db205f01b4fd580fb5daa9072d96849d'] = 'サービス合計';

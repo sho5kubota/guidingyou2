@@ -104,5 +104,6 @@ $_MODULE['<{productcomments}traveler>productcomments_b78a3223503896721cca1303f77
 $_MODULE['<{productcomments}traveler>productcomments_0be8406951cdfda82f00f79328cf4efc'] = '';
 $_MODULE['<{productcomments}traveler>productcomments_9ec6e88ba9192880b4d976ac7f9ca59c'] = '';
 $_MODULE['<{productcomments}traveler>productcomments_reviews_d844ad9202d0de8442498775ba6ef819'] = 'Review(s)';
+$_MODULE['<{productcomments}traveler>productcomments_reviews_4f75d552c0602cbbc41c862c595a7163'] = '';
 $_MODULE['<{productcomments}traveler>products-comparison_5d9acecbb0b55a71dea7403896356001'] = 'View comments';
 $_MODULE['<{productcomments}traveler>tab_34e80a799d144cfe4af46815e103f017'] = 'Reviews';

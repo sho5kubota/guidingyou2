@@ -62,9 +62,6 @@ class SmartBlogPost extends ObjectModel
         if($id_lang == null){
                     $id_lang = (int)Context::getContext()->language->id;
                 }
-        preg_match('/^[\d]+/', $id_post, $id_post);
-        $id_post = $id_post[0];
-
         $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post 
@@ -94,10 +91,8 @@ class SmartBlogPost extends ObjectModel
                 $result['post_type'] = $post[0]['post_type'];
                 $result['id_category'] = $post[0]['id_category'];
                 $employee = new  Employee($post[0]['id_author']);
-                $result['id_author'] = $post[0]['id_author'];
                 $result['lastname'] = $employee->lastname;
                 $result['firstname'] = $employee->firstname;
-                $result['youtube'] = $post[0]['youtube'];
                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post[0]['id_smart_blog_post'] . '.jpg') )
                 {
                    $image =   $post[0]['id_smart_blog_post'] . '.jpg';
