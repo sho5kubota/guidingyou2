@@ -27,13 +27,15 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
            $countcomment = $blogcomment->getToltalComment($id_post);
            $id_cate = $post['id_category'];
            $title_category = $BlogCategory->getNameCategory($id_cate);
-            if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . Tools::getValue('id_post') . '.jpg') )
+           // die(print_r($post));
+           // die(_PS_MODULE_DIR_.'smartblog/images/'. $post['id_author'] . '/' . $post['id_post'] . '.jpg');
+            if (file_exists(_PS_MODULE_DIR_.'smartblog/images/'. $post['id_author'] . '/' . $post['id_post'] . '.jpg') )
                 {
-                   $post_img =  Tools::getValue('id_post');
+                   $post_img =   $post['id_post'];
                 }else{
                     $post_img = 'no';
                 }
-           
+            
 	   SmartBlogPost::postViewed($id_post);
            
            $this->context->smarty->assign(array(
@@ -44,7 +46,7 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                                             'cat_link_rewrite'=>$title_category[0]['link_rewrite'],
                                             'meta_title'=>$post['meta_title'],
                                             'post_active'=>$post['active'],
-                                            'content'=>$post['content'],
+                                            'content'=> htmlspecialchars_decode($post['content']),
                                             'id_post'=>$post['id_post'],
                                             'smartshowauthorstyle'=>Configuration::get('smartshowauthorstyle'),
                                             'smartshowauthor'=>Configuration::get('smartshowauthor'),
@@ -57,7 +59,9 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                                             'countcomment'=>$countcomment,
                                             'post_img'=>$post_img,
                                             '_report'=>$this->_report,
-                                            'id_category'=>$post['id_category']
+                                            'id_category'=>$post['id_category'],
+                                            'id_author' => $post['id_author'],
+                                            'youtube'   => $this->convertYoutube($post['youtube']),
                                             ));
 	   $this->context->smarty->assign('HOOK_SMART_BLOG_POST_FOOTER',
 					  Hook::exec('displaySmartAfterPost'));
@@ -154,5 +158,13 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
 					$name
 				))
 				return true;
+    }
+
+    public function convertYoutube($string) {
+        return preg_replace(
+            "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
+            "<iframe src=\"//www.youtube.com/embed/$2\" width=\"560\" height=\"315\"></iframe>",
+            $string
+        );
     }
 }

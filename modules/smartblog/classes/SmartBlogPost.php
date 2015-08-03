@@ -94,8 +94,10 @@ class SmartBlogPost extends ObjectModel
                 $result['post_type'] = $post[0]['post_type'];
                 $result['id_category'] = $post[0]['id_category'];
                 $employee = new  Employee($post[0]['id_author']);
+                $result['id_author'] = $post[0]['id_author'];
                 $result['lastname'] = $employee->lastname;
                 $result['firstname'] = $employee->firstname;
+                $result['youtube'] = $post[0]['youtube'];
                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post[0]['id_smart_blog_post'] . '.jpg') )
                 {
                    $image =   $post[0]['id_smart_blog_post'] . '.jpg';
