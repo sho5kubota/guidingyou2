@@ -6,7 +6,7 @@ class SmartSellerBlog extends Module {
 
 	public function __construct() {
 
-	    $this->name = 'SmartSellerBlog';
+	    $this->name = 'smartsellerblog';
 	    $this->tab = 'front_office_features';
 	    $this->version = '1.0.0';
 	    $this->author = 'Alex Strauss';
@@ -16,7 +16,7 @@ class SmartSellerBlog extends Module {
 	 
 	    parent::__construct();
 	 
-	    $this->displayName = $this->l('SmartSellerBlog');
+	    $this->displayName = $this->l('smartsellerblog');
 	    $this->description = $this->l('Seller Smart Blog Agile Blog.');
 	 
 	    $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
@@ -26,14 +26,19 @@ class SmartSellerBlog extends Module {
 	}
 
 	public function install() {
-  		if (Shop::isFeatureActive())
-    		Shop::setContext(Shop::CONTEXT_ALL);
- 
-  		return parent::install() &&
-    		$this->registerHook('leftColumn') &&
-    		$this->registerHook('header') &&
-    		Configuration::updateValue('MYMODULE_NAME', 'my friend');
-	}
+
+    if (Shop::isFeatureActive())
+      Shop::setContext(Shop::CONTEXT_ALL);
+   
+    if (!parent::install() ||
+      !$this->registerHook('leftColumn') ||
+      !$this->registerHook('header') ||
+      !Configuration::updateValue('MYMODULE_NAME', 'my friend')
+    )
+      return false;
+   
+    return true;
+  }
 
 	public function uninstall() {
 		if (!parent::uninstall())
