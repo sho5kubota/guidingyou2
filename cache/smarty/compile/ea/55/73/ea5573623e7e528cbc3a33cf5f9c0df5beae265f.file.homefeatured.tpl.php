@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2015-08-03 16:21:14
+<?php /* Smarty version Smarty-3.1.19, created on 2015-08-04 17:14:07
          compiled from "/Applications/MAMP/htdocs/testguidingyou2/themes/traveler/modules/homefeatured/homefeatured.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:155812372355bf247a03acb6-65559746%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:36607215155c0825fe5e599-58238007%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '155812372355bf247a03acb6-65559746',
+  'nocache_hash' => '36607215155c0825fe5e599-58238007',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_55bf247a066984_30050354',
+  'unifunc' => 'content_55c0825fe85d39_45394668',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55bf247a066984_30050354')) {function content_55bf247a066984_30050354($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55c0825fe85d39_45394668')) {function content_55c0825fe85d39_45394668($_smarty_tpl) {?>
 <?php if (isset($_smarty_tpl->tpl_vars['products']->value)&&$_smarty_tpl->tpl_vars['products']->value) {?>
 <span class="homepage-products-title"><h2><?php echo smartyTranslate(array('s'=>'Popular Tours'),$_smarty_tpl);?>
 </h2></span>

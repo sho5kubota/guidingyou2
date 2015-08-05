@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2015-08-03 16:21:14
+<?php /* Smarty version Smarty-3.1.19, created on 2015-08-04 17:14:08
          compiled from "/Applications/MAMP/htdocs/testguidingyou2/themes/traveler/index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:209336243855bf247aa08dd8-31679368%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:113864039355c082608932a0-68817941%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '209336243855bf247aa08dd8-31679368',
+  'nocache_hash' => '113864039355c082608932a0-68817941',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_55bf247aabdf91_61881097',
+  'unifunc' => 'content_55c08260941543_63383050',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55bf247aabdf91_61881097')) {function content_55bf247aabdf91_61881097($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55c08260941543_63383050')) {function content_55c08260941543_63383050($_smarty_tpl) {?>
 <?php if (isset($_smarty_tpl->tpl_vars['HOOK_HOME_TAB_CONTENT']->value)&&trim($_smarty_tpl->tpl_vars['HOOK_HOME_TAB_CONTENT']->value)) {?>
     <?php if (isset($_smarty_tpl->tpl_vars['HOOK_HOME_TAB']->value)&&trim($_smarty_tpl->tpl_vars['HOOK_HOME_TAB']->value)) {?>
 	<div class="container info-banners">

@@ -41,7 +41,7 @@
 			</li>
 			<li class="facebook">
 				<div style="margin-top:10px; margin-left: 25px;">
-				<div class="fb-like" data-href="https://www.facebook.com/guiding.you.around.world" data-layout="button_count" data-action="like" data-show-faces="true" ></div>
+				<div class="fb-like" data-href="https://www.facebook.com/guiding.you.around.world" data-layout="standard" data-width="225px" data-action="like" data-show-faces="true" ></div>
 				</div>
 			</li>
 		{/if}

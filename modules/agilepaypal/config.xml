@@ -2,7 +2,7 @@
 <module>
 	<name>agilepaypal</name>
 	<displayName><![CDATA[Agile Paypal]]></displayName>
-	<version><![CDATA[1.6.4.1]]></version>
+	<version><![CDATA[1.6.4.2]]></version>
 	<description><![CDATA[Accepts payments through PayPal and allows customer to skip account registration]]></description>
 	<author><![CDATA[addons-modules.com]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>

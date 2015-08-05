@@ -2,7 +2,7 @@
 <module>
 	<name>agilesellermessenger</name>
 	<displayName><![CDATA[Agile Seller Messenger]]></displayName>
-	<version><![CDATA[2.0.0.2]]></version>
+	<version><![CDATA[2.0.0.3]]></version>
 	<description><![CDATA[Provides a method of comunication between customer and seller or store owner.]]></description>
 	<author><![CDATA[addons-modules.com]]></author>
 	<tab><![CDATA[front_office_features]]></tab>

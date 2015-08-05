@@ -619,4 +619,42 @@ class Link extends LinkCore
 		return $url.$dispatcher->createUrl('cms_rule', $id_lang, $params, $this->allow, '', $id_shop);
 	}
 	
+
+
+
+
+
+
+
+	/*
+	* module: smartsellerblog
+	* date: 2015-08-04 10:14:37
+	* version: 1.0.0
+	*/
+	public function getPaginationLink2($type, $id_object, $nb = false, $sort = false, $pagination = false, $array = false) {
+		return '';
+	}
+
+
+	/*
+	* module: smartsellerblog
+	* date: 2015-08-04 10:14:37
+	* version: 1.0.0
+	*/
+	public function getTest() {
+		return 'HAHA!';;
+	}
+
+
+	/*
+	* module: smartsellerblog
+	* date: 2015-08-04 10:14:37
+	* version: 1.0.0
+	*/
+	public function goPage2($url, $p)
+	{
+		$url = rtrim(str_replace('?&', '?', $url), '?');
+		return $url.($p == 1 ? '?p=1' : (!strstr($url, '?') ? '?' : '&').'p='.(int)$p);
+	}
+
 }
