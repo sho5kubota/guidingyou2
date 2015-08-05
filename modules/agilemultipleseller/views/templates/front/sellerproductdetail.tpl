@@ -1,9 +1,10 @@
 {capture name=path}<a href="{$link->getPageLink('my-account', true)}">{l s='My Account' mod='agilemultipleseller'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='My Seller Account'  mod='agilemultipleseller'}{/capture}
 <div id="agile">
 <h1 class="withAdditional">{l s='My Seller Account' mod='agilemultipleseller'}</h1>
-<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
+<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='agilemultipleseller'}</a>
 {include file="$agilemultipleseller_views./templates/front/seller_tabs.tpl"}
 <br />
+<a href="{$link->getCMSLink('24','how-to-enter-services')|escape:'html'}" class="additionalLink" style="font-size:1.4em;margin-left:5px;">{l s='How to enter your services' mod='agilemultipleseller'}</a>
 {include file="$tpl_dir./errors.tpl"}
 <script type="text/javascript">
 	var base_dir = "{$base_dir_ssl}";
