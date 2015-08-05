@@ -1,5 +1,4 @@
-<h1 class="withAdditional">{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
-<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
+<h1>{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
 {include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
 <div id="agile">
 	<div class="block-center clearfix" id="block-history">
@@ -93,7 +92,7 @@
         	</td>
         	<td class="pointer left">{$blog['cat_title']}</td>
         	<td class="pointer left"><a href="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post' => $blog['id_smart_blog_post']], true)}">{$blog['meta_title']}</a></td>
-        	<td class="pointer left">{$blog['short_description']}</td>
+        	<td class="pointer left">{$blog['short_description']|html_entity_decode|strip_tags:true}</td>
         	<td class="pointer center">
         		{if $blog['active'] == 1}
 					<a href="{$link->getModuleLink('smartsellerblog', 'smartlist', ['process' => 'inactive', 'id_smart_blog_post'=> $blog['id_smart_blog_post']], true)}" ><img src="{$base_dir_ssl}img/admin/enabled.gif" /></a>

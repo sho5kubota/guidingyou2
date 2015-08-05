@@ -65,9 +65,15 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 	public function initContent() {
 		parent::initContent();
 
+		// die('<pre>'.print_r($_SERVER,true));
+
+			if(isset($_GET['add']) && $_GET['add'] == 1)
+				self::$smarty->assign('cfmmsg_flag',1);
+
 		
 		$blogId = $_GET['id_smart_blog_post'];
-        $sellerId = $this->context->controller->seller->id;
+
+		$sellerId = $this->context->controller->seller->id;
 	
 		$data = self::getPost($blogId);
 		if(count($data) > 0)
@@ -87,13 +93,16 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 
 		$img_dir = _PS_MODULE_DIR_ .'smartblog/images/'. $sellerId;
 
+		$categories = $this->getBlogCategories();
+
 		self::$smarty->assign(array(
 			'hasOwnerShip' => $hasOwnership,
             'blog' => $data,
             'youtube_preview' => $youtube_preview,
             'img_dir' => $img_dir,
             'post' => $_POST,
-            'seller_tab_id' => 7
+            'seller_tab_id' => 7,
+            'categories' => $categories
         ));
 
 		$this->setTemplate('smartblogform.tpl');
@@ -109,8 +118,9 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 				$this->validateBlog();
 				if(empty($this->errors)) {
 					$s = $this->saveBlog();
-				 	self::$smarty->assign('cfmmsg_flag',1);
-				 	Tools::redirect('http://testguidingyou.local/en/module/smartsellerblog/smartform?id_smart_blog_post='.$s);
+					$redirect_link = 'http://'.$_SERVER['HTTP_HOST'];
+				 	Tools::redirect($redirect_link.'/en/module/smartsellerblog/smartform?id_smart_blog_post='.$s.'&add=1');
+				 	
 				 }
 			}
 			else {
@@ -123,7 +133,8 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		}
 	}
 
-	public function updateBlog() {
+	public function updateBlog() { 
+		header('Content-Type: text/html; charset=utf-8');
 		$blogId 	= $_GET['id_smart_blog_post'];
 		$sellerId = $this->context->controller->seller->id;
 		$title 		= htmlentities(Tools::getValue('title'));
@@ -131,13 +142,14 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		$content 	= htmlentities(Tools::getValue('content'));
 		$status 	= Tools::getValue('active');
 		$youtube 	= Tools::getValue('youtube');
+		$id_category 	= Tools::getValue('category');
 
 		$query = "UPDATE "._DB_PREFIX_."smart_blog_post_lang SET meta_title = '". pSQL($title) . "', meta_description = '".pSQL($short_desc)."' 
-		, short_description ='".pSQL($short_desc)."', content ='".pSQL($content)."' 
+		, short_description ='".(pSQL($short_desc))."', content ='".pSQL($content)."'  
 		WHERE id_smart_blog_post =".$blogId;
 		Db::getInstance()->execute($query);
 
-		$query2 = "UPDATE "._DB_PREFIX_."smart_blog_post SET active =".$status.", youtube ='".pSQL($youtube)  ."' WHERE id_smart_blog_post =". $blogId;
+		$query2 = "UPDATE "._DB_PREFIX_."smart_blog_post SET active =".$status.", youtube ='".pSQL($youtube)  ."', id_category =".$id_category." WHERE id_smart_blog_post =". $blogId;
 		Db::getInstance()->execute($query2);
 
 		$images = $this->getImages($sellerId,$blogId);
@@ -155,15 +167,19 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 
 		$languages  = Language::getLanguages(0);
 
+		$sellerId = $this->context->controller->seller->id;
+
 		// insert new data
 		$title = Tools::getValue('title');
 		$link_rewrite = Tools::str2url($title);
 		$short_description = Tools::getValue('short_description');
 		$content = Tools::getValue('content');
+		$id_category 	= Tools::getValue('category');
+		$youtube 	= Tools::getValue('youtube');
 
 		// Insert into smart_blog_post table
-		$query_blog = "INSERT INTO "._DB_PREFIX_ . "smart_blog_post (`id_author`, `id_category`, `position`, `active`, `available`, `created`, `post_type`, `comment_status`,`viewed`, `is_featured`)
-				  VALUES ('".$this->context->controller->seller->id."', 1, 0, 1, 1, '".date('Y-m-d H:i:s')."', 0, 1,0,0)";
+		$query_blog = "INSERT INTO "._DB_PREFIX_ . "smart_blog_post (`id_author`, `id_category`, `position`, `active`, `available`, `created`, `post_type`, `comment_status`,`viewed`, `is_featured`,`youtube`)
+				  VALUES ('".$this->context->controller->seller->id."', ".$id_category.", 0, 1, 1, '".date('Y-m-d H:i:s')."', 0, 1,0,0,'".$youtube."')";
 
 		Db::getInstance()->execute($query_blog);
 		$last_id = Db::getInstance()->Insert_ID(); 
@@ -186,6 +202,12 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		// insert into smart_blog_post_shop
 		$blog_shop = "INSERT INTO "._DB_PREFIX_ . "smart_blog_post_shop (`id_smart_blog_post`,`id_shop`) VALUES(".$last_id.",1)";
 		Db::getInstance()->execute($blog_shop);
+
+		$images = $this->getImages($sellerId,$last_id);
+
+		$activeImgId = $images[0]['id_img'];
+
+		$this->uploadImages($last_id,$activeImgId);
 
 		return $last_id;
 		// die('<pre>'.print_r($query, true));
@@ -210,7 +232,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 	public function  inBlogUser($id_blog, $id_user) {
 		$sql  = "SELECT s.id_smart_blog_post, s.id_author 
 				FROM "._DB_PREFIX_."smart_blog_post s
-				WHERE s.id_smart_blog_post = ".$id_blog." 
+				WHERE s.id_smart_blog_post = '".$id_blog."' 
 				AND s.id_author = ".$id_user."
 				";
 
@@ -225,7 +247,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 				'._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
 				WHERE pl.id_lang='.$id_lang.' 
-				AND pl.id_smart_blog_post ='.$id_blog .'
+				AND pl.id_smart_blog_post ="'.$id_blog .'"
 				ORDER BY p.id_smart_blog_post';
 
 		$data = Db::getInstance()->getRow($sql);
@@ -287,7 +309,8 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		if($check === false) {
 			$query = "INSERT INTO "._DB_PREFIX_."smart_blog_images (`id_smart_blog_post`, `id_author`, `img_name`)VALUES
 			(".$id_smart_blog_post.",".$id_seller.",'".$file_name."')";
-		Db::getInstance()->execute($query);
+
+			Db::getInstance()->execute($query);
 		} 
 
 		
@@ -299,6 +322,16 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 					FROM "._DB_PREFIX_."smart_blog_images si
 					WHERE `si`.`id_author` =".$id_seller." AND `si`.`id_smart_blog_post` =". $id_smart_blog_post;
 
+		$data = Db::getInstance()->ExecuteS($query);
+
+		return $data;
+	}
+
+	public function getBlogCategories() {
+		$query = "SELECT DISTINCT `s`.`id_smart_blog_category`, `sb`.`meta_title` FROM "._DB_PREFIX_."smart_blog_category s
+				  LEFT JOIN "._DB_PREFIX_."smart_blog_category_lang  sb
+				  	ON s.id_smart_blog_category=sb.id_smart_blog_category
+				  WHERE s.active=1";
 		$data = Db::getInstance()->ExecuteS($query);
 
 		return $data;
