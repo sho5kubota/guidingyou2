@@ -58,6 +58,15 @@ class BlogCategory extends ObjectModel
                                return false;
                return $result;
            }
+
+        public static function getSellerInfo($id){
+            $id_lang = (int)Context::getContext()->language->id;
+               $sql = 'SELECT * FROM '._DB_PREFIX_.'sellerinfo s, '._DB_PREFIX_.'shop_url su 
+                       WHERE s.id_seller=su.id_shop_url AND s.id_seller='.$id;
+               if (!$result = Db::getInstance()->executeS($sql))
+                               return false;
+               return $result;
+           }
            
            public static function getCatName($id){
             $id_lang = (int)Context::getContext()->language->id;

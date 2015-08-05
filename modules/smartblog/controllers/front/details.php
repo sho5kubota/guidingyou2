@@ -7,14 +7,14 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
     public $_report = '';
     private $_postsObject;
         
-	public function init()
-	{
-		parent::init();
-	}
-	public function initContent()
-	{
+    public function init()
+    {
+        parent::init();
+    }
+    public function initContent()
+    {
            parent::initContent();
-		   Hook::exec('actionsbsingle', array('id_post' => Tools::getValue('id_post')));
+           Hook::exec('actionsbsingle', array('id_post' => Tools::getValue('id_post')));
            $blogcomment = new Blogcomment();
            $SmartBlogPost = new SmartBlogPost();
            $BlogCategory = new BlogCategory();
@@ -27,14 +27,16 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
            $countcomment = $blogcomment->getToltalComment($id_post);
            $id_cate = $post['id_category'];
            $title_category = $BlogCategory->getNameCategory($id_cate);
-            if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . Tools::getValue('id_post') . '.jpg') )
+           // die(print_r($post, true));
+           // die(_PS_MODULE_DIR_.'smartblog/images/'. $post['id_author'] . '/' . $post['id_post'] . '.jpg');
+            if (file_exists(_PS_MODULE_DIR_.'smartblog/images/'. $post['id_author'] . '/' . $post['id_post'] . '.jpg') || file_exists(_PS_MODULE_DIR_.'smartblog/images/'. $post['id_author'] . '/' . $post['id_post'] . '.jpeg'))
                 {
-                   $post_img =  Tools::getValue('id_post');
+                   $post_img =   $post['id_post'];
                 }else{
                     $post_img = 'no';
                 }
-           
-	   SmartBlogPost::postViewed($id_post);
+            
+       SmartBlogPost::postViewed($id_post);
            
            $this->context->smarty->assign(array(
                                             'post'=>$post,
@@ -44,7 +46,7 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                                             'cat_link_rewrite'=>$title_category[0]['link_rewrite'],
                                             'meta_title'=>$post['meta_title'],
                                             'post_active'=>$post['active'],
-                                            'content'=>$post['content'],
+                                            'content'=> htmlspecialchars_decode($post['content']),
                                             'id_post'=>$post['id_post'],
                                             'smartshowauthorstyle'=>Configuration::get('smartshowauthorstyle'),
                                             'smartshowauthor'=>Configuration::get('smartshowauthor'),
@@ -57,12 +59,14 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                                             'countcomment'=>$countcomment,
                                             'post_img'=>$post_img,
                                             '_report'=>$this->_report,
-                                            'id_category'=>$post['id_category']
+                                            'id_category'=>$post['id_category'],
+                                            'id_author' => $post['id_author'],
+                                            'youtube'   => $this->convertYoutube($post['youtube']),
                                             ));
-	   $this->context->smarty->assign('HOOK_SMART_BLOG_POST_FOOTER',
-					  Hook::exec('displaySmartAfterPost'));
-           $this->setTemplate('posts.tpl');		
-	}
+       $this->context->smarty->assign('HOOK_SMART_BLOG_POST_FOOTER',
+                      Hook::exec('displaySmartAfterPost'));
+           $this->setTemplate('posts.tpl');     
+    }
      public function _posts(){
            
             $SmartBlogPost = new SmartBlogPost();
@@ -119,40 +123,48 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                         $bc->id_parent = (int)$id_parent_post;
                         $bc->active = (int)$value;
                         if($bc->add()){
-						   $this->_report.='<p class="success">'.$this->module->l('Comment added !').'</p>';
-						   Hook::exec('actionsbpostcomment', array('bc' => $bc));
-						   $this->smartsendMail($name,$mail,$comment);
+                           $this->_report.='<p class="success">'.$this->module->l('Comment added !').'</p>';
+                           Hook::exec('actionsbpostcomment', array('bc' => $bc));
+                           $this->smartsendMail($name,$mail,$comment);
                         }
                 }
                }
         }
         }
-	private function smartsendMail($sname,$semailAddr,$scomment,$slink = null)
+    private function smartsendMail($sname,$semailAddr,$scomment,$slink = null)
     {
-			$name =  Tools::stripslashes($sname);
-			$e_body ='You have Received a New Comment In Your Blog Post From '. $name . '. Comment: '.$scomment.' .Your Can reply Here : '.$slink.'';
-			$emailAddr =  Tools::stripslashes($semailAddr);
-			$comment =  Tools::stripslashes($scomment);
-			$subject =  'New Comment Posted';
-			$id_lang = (int)Configuration::get('PS_LANG_DEFAULT');	
-			$to =  Configuration::get('PS_SHOP_EMAIL');
-			$contactMessage =  
-				"
-				$comment 
-				Name: $name
-				IP: ".((version_compare(_PS_VERSION_, '1.3.0.0', '<'))?$_SERVER['REMOTE_ADDR']:Tools::getRemoteAddr());
-				if(Mail::Send($id_lang,
-					'contact',
-					$subject,
-					array(
-						'{message}' => nl2br($e_body),
-						'{email}' =>  $emailAddr,
-					),
-					$to,
-					null,
-					$emailAddr,
-					$name
-				))
-				return true;
+            $name =  Tools::stripslashes($sname);
+            $e_body ='You have Received a New Comment In Your Blog Post From '. $name . '. Comment: '.$scomment.' .Your Can reply Here : '.$slink.'';
+            $emailAddr =  Tools::stripslashes($semailAddr);
+            $comment =  Tools::stripslashes($scomment);
+            $subject =  'New Comment Posted';
+            $id_lang = (int)Configuration::get('PS_LANG_DEFAULT');  
+            $to =  Configuration::get('PS_SHOP_EMAIL');
+            $contactMessage =  
+                "
+                $comment 
+                Name: $name
+                IP: ".((version_compare(_PS_VERSION_, '1.3.0.0', '<'))?$_SERVER['REMOTE_ADDR']:Tools::getRemoteAddr());
+                if(Mail::Send($id_lang,
+                    'contact',
+                    $subject,
+                    array(
+                        '{message}' => nl2br($e_body),
+                        '{email}' =>  $emailAddr,
+                    ),
+                    $to,
+                    null,
+                    $emailAddr,
+                    $name
+                ))
+                return true;
+    }
+
+    public function convertYoutube($string) {
+        return preg_replace(
+            "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
+            "<iframe src=\"//www.youtube.com/embed/$2\" width=\"560\" height=\"315\"></iframe>",
+            $string
+        );
     }
 }

@@ -17,18 +17,27 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
            $categoryinfo = '';
            $title_category = '';
            $cat_link_rewrite = '';
+           $seller_slug = '';
             $blogcomment = new Blogcomment();
             $SmartBlogPost = new SmartBlogPost();
             $BlogCategory = new BlogCategory();
+            // die('ID: ' . Tools::getvalue('id_seller'));
             $BlogPostCategory = new BlogPostCategory();
             $id_category = Tools::getvalue('id_category');
+            $id_seller = Tools::getvalue('id_seller');
                 $posts_per_page = Configuration::get('smartpostperpage');
                 $limit_start = 0;
                 $limit = $posts_per_page;
-                if(!$id_category = Tools::getvalue('id_category'))
-                {
-                        $total = $SmartBlogPost->getToltal($this->context->language->id);
-                }else{
+                
+                if($id_category == false AND $id_seller == false)
+                {      
+                    $total = $SmartBlogPost->getToltal($this->context->language->id);
+                } else if($id_seller) {
+                        $seller_info = $BlogCategory->getSellerInfo($id_seller);
+                        $seller_slug = substr($seller_info[0]['virtual_uri'],0, -1);
+    
+                         $total = $SmartBlogPost->getToltalBySeller($this->context->language->id, $id_seller);
+                } else{
                         $total = $SmartBlogPost->getToltalByCategory($this->context->language->id,$id_category);
                         Hook::exec('actionsbcat', array('id_category' => Tools::getvalue('id_category')));
                 }
@@ -38,10 +47,13 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                 $c = Tools::getValue('page');
                     $limit_start = $posts_per_page * ($c - 1);
             }
-                if(!$id_category = Tools::getvalue('id_category'))
-                {
+               if($id_category == false AND $id_seller == false)
+                { 
                     $allNews = $SmartBlogPost->getAllPost($this->context->language->id,$limit_start,$limit);
-                }else{
+                } else if($id_seller) {
+                     $allNews = $BlogPostCategory->getToltalBySeller($this->context->language->id,$id_seller,$limit_start,$limit);
+                }
+                else{
                     if (file_exists(_PS_MODULE_DIR_.'smartblog/images/category/' . $id_category. '.jpg'))
                     {
                        $cat_image =   $id_category;
@@ -79,12 +91,15 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                 }
             }
             
+
             $this->context->smarty->assign( array(
                                             'postcategory'=>$allNews,
                                             'category_status'=>$category_status,
                                             'title_category'=>$title_category,
                                             'cat_link_rewrite'=>$cat_link_rewrite,
                                             'id_category'=>$id_category,
+                                            'id_author' => $id_seller,
+                                            'seller_slug' => $seller_slug,
                                             'cat_image'=>$cat_image,
                                             'categoryinfo'=>$categoryinfo,
                                             'smartshowauthorstyle'=>Configuration::get('smartshowauthorstyle'),

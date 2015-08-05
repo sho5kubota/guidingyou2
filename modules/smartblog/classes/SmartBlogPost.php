@@ -62,6 +62,9 @@ class SmartBlogPost extends ObjectModel
         if($id_lang == null){
                     $id_lang = (int)Context::getContext()->language->id;
                 }
+        preg_match('/^[\d]+/', $id_post, $id_post);
+        $id_post = $id_post[0];
+
         $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post 
@@ -91,8 +94,10 @@ class SmartBlogPost extends ObjectModel
                 $result['post_type'] = $post[0]['post_type'];
                 $result['id_category'] = $post[0]['id_category'];
                 $employee = new  Employee($post[0]['id_author']);
+                $result['id_author'] = $post[0]['id_author'];
                 $result['lastname'] = $employee->lastname;
                 $result['firstname'] = $employee->firstname;
+                $result['youtube'] = $post[0]['youtube'];
                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post[0]['id_smart_blog_post'] . '.jpg') )
                 {
                    $image =   $post[0]['id_smart_blog_post'] . '.jpg';
@@ -115,6 +120,14 @@ class SmartBlogPost extends ObjectModel
             $limit = 5;
         $result = array();
         $BlogCategory = '';
+
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        $url = parse_url($actual_link);
+
+        $store_alias = explode('/',$url['path']);
+
+        $seller_alias = $store_alias[1];
       
         $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
@@ -137,13 +150,15 @@ class SmartBlogPost extends ObjectModel
                 $result[$i]['meta_keyword'] = $post['meta_keyword'];
                 $result[$i]['id_category'] = $post['id_category']; 
                 $result[$i]['link_rewrite'] = $post['link_rewrite'];
+                $result[$i]['seller_alias'] = $seller_alias;
                 $result[$i]['cat_name'] = $BlogCategory->getCatName($post['id_category']);
                 $result[$i]['cat_link_rewrite'] = $BlogCategory->getCatLinkRewrite($post['id_category']);
                 $employee = new  Employee( $post['id_author']);
                 
+                $result[$i]['id_author'] = $post['id_author'];
                 $result[$i]['lastname'] = $employee->lastname;
                 $result[$i]['firstname'] = $employee->firstname;
-                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_smart_blog_post'] . '.jpg'))
+                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg'))
                     {
                        $image =   $post['id_smart_blog_post'];
                        $result[$i]['post_img'] = $image;
@@ -184,6 +199,21 @@ class SmartBlogPost extends ObjectModel
                 '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
                 WHERE pl.id_lang='.$id_lang.'
                 AND p.active= 1 AND p.id_category = '.$id_category;
+        if (!$posts = Db::getInstance()->executeS($sql))
+      return false;
+        return count($posts);
+    }
+
+    public static function getToltalBySeller($id_lang = null,$id_seller = null){
+        if($id_lang == null){
+                    $id_lang = (int)Context::getContext()->language->id;
+                }
+
+        $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE pl.id_lang='.$id_lang.'
+                AND p.active= 1 AND p.id_author = '.$id_seller;
         if (!$posts = Db::getInstance()->executeS($sql))
       return false;
         return count($posts);
@@ -676,19 +706,20 @@ class SmartBlogPost extends ObjectModel
                 LIMIT '.$limit;
                 $posts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql2);      
             }
-             $i = 0;
+             $i = 0; 
             foreach($posts as $post){
                 $result[$i]['id'] = $post['id_smart_blog_post'];
                 $result[$i]['title'] = $post['meta_title'];
                 $result[$i]['meta_description'] = strip_tags($post['meta_description']);
-                $result[$i]['short_description'] = strip_tags($post['short_description']);
+                $result[$i]['short_description'] = strip_tags(html_entity_decode($post['short_description']));
                 $result[$i]['content'] = strip_tags($post['content']);
                 $result[$i]['category'] = $post['id_category'];
                 $result[$i]['date_added'] = $post['created'];
                 $result[$i]['viewed'] = $post['viewed'];
                 $result[$i]['is_featured'] = $post['is_featured'];
                 $result[$i]['link_rewrite'] = $post['link_rewrite'];
-                if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_smart_blog_post'] . '.jpg'))
+                $result[$i]['id_author'] = $post['id_author'];
+                if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg'))
                     {
                        $image =   $post['id_smart_blog_post'];
                        $result[$i]['post_img'] = $image;
@@ -701,4 +732,80 @@ class SmartBlogPost extends ObjectModel
             }
             return $result;
             }
+
+  public static function GetSellerBlogs($limit) {
+
+    $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    $url = parse_url($actual_link);
+
+    $store_alias = explode('/',$url['path']);
+
+    $seller_alias = $store_alias[1] . "/";
+
+    $sellerinfo = self::getSellerInfo($seller_alias);
+
+    $id_seller = $sellerinfo['id_seller'];
+
+    if($limit == '' && $limit == null)
+                    $limit = 3;
+            $id_lang = (int)Context::getContext()->language->id;
+            $id_lang_defaut = Configuration::get('PS_LANG_DEFAULT');
+            $result = array();
+            $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE pl.id_lang='.$id_lang.'  
+                AND p.id_author='.$id_seller.'   
+                AND p.active= 1 ORDER BY p.id_smart_blog_post DESC 
+                LIMIT '.$limit;
+            $posts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
+            if(empty($posts)){
+                $sql2 = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post  AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE pl.id_lang='.$id_lang_defaut.'    
+                AND p.id_author='.$id_seller.'  
+                AND p.active= 1 ORDER BY p.id_smart_blog_post DESC 
+                LIMIT '.$limit;
+                $posts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql2);      
+            }
+             $i = 0;
+            foreach($posts as $post){
+                $result[$i]['id'] = $post['id_smart_blog_post'];
+                $result[$i]['title'] = $post['meta_title'];
+                $result[$i]['meta_description'] = strip_tags($post['meta_description']);
+                $result[$i]['short_description'] = strip_tags(htmlspecialchars_decode($post['short_description']));
+                $result[$i]['content'] = htmlspecialchars_decode($post['content']);
+                $result[$i]['category'] = $post['id_category'];
+                $result[$i]['date_added'] = $post['created'];
+                $result[$i]['viewed'] = $post['viewed'];
+                $result[$i]['is_featured'] = $post['is_featured'];
+                $result[$i]['link_rewrite'] = $post['link_rewrite'];
+                $result[$i]['id_author'] = $post['id_author'];
+                $result[$i]['seller_alias'] = $store_alias[1];
+                if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg'))
+                    {
+                       $image =   $post['id_smart_blog_post'];
+                       $result[$i]['post_img'] = $image;
+                    }
+                    else
+                    {
+                       $result[$i]['post_img'] = 'no';
+                    }
+                $i++;
+            }
+            return $result;
+  }
+
+  public static function getSellerInfo($store_alias) {
+    $sql = "SELECT * FROM "._DB_PREFIX_."shop_url s
+            LEFT JOIN "._DB_PREFIX_."sellerinfo si ON s.id_shop = si.id_shop
+            WHERE virtual_uri = '".pSQL($store_alias)."' AND active = 1";
+
+    $data = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
+
+    return $data;
+  }
+
 }

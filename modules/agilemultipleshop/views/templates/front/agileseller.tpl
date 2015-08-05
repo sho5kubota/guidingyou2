@@ -168,3 +168,5 @@
 		$("#top_column").hide();
 	});
 </script>
+
+{hook h="displayBlogSeller"}
