@@ -220,6 +220,7 @@ class smartblog extends Module {
                     'module' => 'smartblog',
                 ),
             ),
+            
             'smartblog_category_pagination' => array(
                 'controller' => 'category',
                 'rule' =>       $alias.'/category/{id_category}_{slug}/page/{page}'.$html,
@@ -233,6 +234,34 @@ class smartblog extends Module {
                     'module' => 'smartblog',
                 ),
             ),
+
+            'smartblog_sellers' => array(
+                'controller' => 'category',
+                'rule' =>        $alias.'/guide/{id_seller}_{slug}'.$html,
+                'keywords' => array(
+                    'id_seller' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'id_seller'),
+                    'slug'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*'),
+                ),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'smartblog',
+                ),
+            ),
+
+            'smartblog_sellers_pagination' => array(
+                'controller' => 'category',
+                'rule' =>       $alias.'/guide/{id_seller}_{slug}/page/{page}'.$html,
+                'keywords' => array(
+                    'id_seller' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'id_seller'),
+                    'page' =>        array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'page'),
+                    'slug'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*'),
+                ),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'smartblog',
+                ),
+            ),
+
             'smartblog_cat_page_mod' => array(
                 'controller' => 'category',
                 'rule' =>       'module/'.$alias.'/category/{id_category}_{slug}/page/{page}'.$html,

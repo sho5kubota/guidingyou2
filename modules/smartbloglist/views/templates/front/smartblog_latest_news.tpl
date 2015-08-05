@@ -1,8 +1,8 @@
 {* <pre>{$view_data|@print_r}</pre> *}
-{assign var=alex value=['id_seller' => 2, 'slug' => 'alex-strauss']}
-<pre>{$alex|@print_r}</pre>
+{assign var=seller_options value=['id_seller' => $view_data[0]['id_author'], 'slug' => $view_data[0]['seller_alias']]}
+{* <pre>{$seller_options|@print_r}</pre> *}
 <div class="block">
-    <h2 class='sdstitle_block'><a href="{smartblog::GetSmartBlogLink('smartblog_sellers',$alex)}">{l s='Seller\'s Blog' mod='smartbloglist'}</a></h2>
+    <h2 class='sdstitle_block'><a href="{smartblog::GetSmartBlogLink('smartblog_sellers',$seller_options)}">{l s='Seller\'s Blog' mod='smartbloglist'}</a></h2>
     {* <h2 class='sdstitle_block'>{l s='Seller\'s Blog' mod='smartbloglist'}</h2> *}
     <div class="sdsblog-box-content">
         {if isset($view_data) AND !empty($view_data)}

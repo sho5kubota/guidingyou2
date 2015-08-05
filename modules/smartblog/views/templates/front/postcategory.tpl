@@ -27,6 +27,7 @@
     {include file="./category_loop.tpl" postcategory=$postcategory}
 {/foreach}
     </div>
+    
     {if !empty($pagenums)}
     <div class="row">
     <div class="post-page col-md-12">
@@ -38,15 +39,23 @@
                             {$options.page = $k+1}
                             {$options.id_category = $id_category}
                             {$options.slug = $cat_link_rewrite}
+                        {elseif $seller_slug != ''}
+                            {assign var="options" value=null}
+                            {$options.page = $k+1}
+                            {$options.id_seller = $id_author}
+                            {$options.slug = $seller_slug}
                         {else}
                             {assign var="options" value=null}
                             {$options.page = $k+1}
                         {/if}
+                        {* <pre>{$options|@print_r}</pre> *}
                         {if ($k+1) == $c}
                             <li><span class="page-active">{$k+1}</span></li>
                         {else}
                                 {if $title_category != ''}
                                     <li><a class="page-link" href="{smartblog::GetSmartBlogLink('smartblog_category_pagination',$options)}">{$k+1}</a></li>
+                                {elseif $seller_slug != ''}
+                                    <li><a class="page-link" href="{smartblog::GetSmartBlogLink('smartblog_sellers_pagination',$options)}">{$k+1}</a></li>
                                 {else}
                                     <li><a class="page-link" href="{smartblog::GetSmartBlogLink('smartblog_list_pagination',$options)}">{$k+1}</a></li>
                                 {/if}
