@@ -152,4 +152,8 @@ class smartbloghomelatestnews extends Module {
             {
                 return $this->DeleteCache();
             }
+    public function hookDisplayBlogSeller() {
+        return $this->display(__FILE__, 'views/templates/front/smartblog_latest_news.tpl');
+    }
+
 }
