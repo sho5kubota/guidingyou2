@@ -784,6 +784,7 @@ class SmartBlogPost extends ObjectModel
                 $result[$i]['link_rewrite'] = $post['link_rewrite'];
                 $result[$i]['id_author'] = $post['id_author'];
                 $result[$i]['seller_alias'] = $store_alias[1];
+                // die(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg');
                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg'))
                     {
                        $image =   $post['id_smart_blog_post'];
