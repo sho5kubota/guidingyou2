@@ -9,7 +9,7 @@
 		{/if}
 		
 		<h1 class="withAdditional">{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
-		<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
+		<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='smartsellerblog'}</a>
 		{include file="$tpl_dir./errors.tpl"}
 		{include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
 		<div class="row" {if $hasOwnerShip eq 1}{else}style="display:none;"{/if}>

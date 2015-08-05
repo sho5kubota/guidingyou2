@@ -1,5 +1,5 @@
 <h1 class="withAdditional">{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
-<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
+<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='smartsellerblog'}</a>
 {include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
 <div id="agile">
 	<div class="block-center clearfix" id="block-history">
