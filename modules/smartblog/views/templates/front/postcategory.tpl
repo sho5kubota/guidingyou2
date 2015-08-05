@@ -14,10 +14,10 @@
         {if $title_category != ''}        
            {foreach from=$categoryinfo item=category}
             <div id="sdsblogCategory">
-               {if ($cat_image != "no" && $activeimgincat == 0) || $activeimgincat == 1}
+               {if $cat_image != "no" }
                    <img alt="{$category.meta_title}" src="{$modules_dir}/smartblog/images/category/{$cat_image}-home-default.jpg" class="imageFeatured">
-               {/if}
-                {$category.description}
+               {/if} 
+               {$category.description}
             </div>
              {/foreach}  
         {/if}
