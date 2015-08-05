@@ -37,12 +37,6 @@ class SmartSellerBlog extends Module {
     )
       return false;
 
-  	 $sql = array();
-        require_once(dirname(__FILE__) . '/sql/install.php');
-        foreach ($sql as $sq) :
-            if (!Db::getInstance()->Execute($sq))
-                return false;
-        endforeach;
    
     return true;
   }

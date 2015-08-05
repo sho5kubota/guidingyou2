@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2015-08-03 16:21:14
+<?php /* Smarty version Smarty-3.1.19, created on 2015-08-04 17:14:08
          compiled from "/Applications/MAMP/htdocs/testguidingyou2/themes/traveler/modules/blocksocial/blocksocial.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:80876405355bf247a2ea439-28356085%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3517217155c082601c32d6-34217201%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5ae85322feff00a53b08829484d0129e9c832267' => 
     array (
       0 => '/Applications/MAMP/htdocs/testguidingyou2/themes/traveler/modules/blocksocial/blocksocial.tpl',
-      1 => 1438586515,
+      1 => 1438664671,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '80876405355bf247a2ea439-28356085',
+  'nocache_hash' => '3517217155c082601c32d6-34217201',
   'function' => 
   array (
   ),
@@ -26,9 +26,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_55bf247a396894_71673294',
+  'unifunc' => 'content_55c082602653e8_49579652',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55bf247a396894_71673294')) {function content_55bf247a396894_71673294($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55c082602653e8_49579652')) {function content_55c082602653e8_49579652($_smarty_tpl) {?>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -49,7 +49,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</li>
 			<li class="facebook">
 				<div style="margin-top:10px; margin-left: 25px;">
-				<div class="fb-like" data-href="https://www.facebook.com/guiding.you.around.world" data-layout="button_count" data-action="like" data-show-faces="true" ></div>
+				<div class="fb-like" data-href="https://www.facebook.com/guiding.you.around.world" data-layout="standard" data-width="225px" data-action="like" data-show-faces="true" ></div>
 				</div>
 			</li>
 		<?php }?>

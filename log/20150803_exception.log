@@ -1,0 +1,32 @@
+*ERROR* 	2015/08/03 - 17:55:55: Duplicate entry '45-1' for key 'PRIMARY'<br /><br /><pre>INSERT INTO ps_smart_blog_post_lang (`id_smart_blog_post`, `id_lang`, `meta_title`, `meta_description`, `short_description`, `content`, `link_rewrite`) VALUES 
+		(45, 1, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 2, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 4, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 6, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 8, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 9, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 10, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 11, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 12, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 13, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 14, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st"),(45, 15, "てst", "てsてtsてつぇt", "てsてtsてつぇt", "っっっっっっっっっっっっっJ", "st")</pre> at line 639 in file classes/db/Db.php
+*ERROR* 	2015/08/03 - 17:57:49: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY p.id_smart_blog_post LIMIT 1' at line 6<br /><br /><pre>SELECT * FROM ps_smart_blog_post p INNER JOIN 
+				ps_smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                ps_smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = 1
+				WHERE pl.id_lang=1 
+				AND pl.id_smart_blog_post =
+				ORDER BY p.id_smart_blog_post LIMIT 1</pre> at line 639 in file classes/db/Db.php
+*ERROR* 	2015/08/03 - 17:58:26: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY p.id_smart_blog_post LIMIT 1' at line 6<br /><br /><pre>SELECT * FROM ps_smart_blog_post p INNER JOIN 
+				ps_smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                ps_smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = 1
+				WHERE pl.id_lang=1 
+				AND pl.id_smart_blog_post =
+				ORDER BY p.id_smart_blog_post LIMIT 1</pre> at line 639 in file classes/db/Db.php
+*ERROR* 	2015/08/03 - 17:58:32: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY p.id_smart_blog_post LIMIT 1' at line 6<br /><br /><pre>SELECT * FROM ps_smart_blog_post p INNER JOIN 
+				ps_smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                ps_smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = 1
+				WHERE pl.id_lang=1 
+				AND pl.id_smart_blog_post =
+				ORDER BY p.id_smart_blog_post LIMIT 1</pre> at line 639 in file classes/db/Db.php
+*ERROR* 	2015/08/03 - 18:00:18: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY p.id_smart_blog_post LIMIT 1' at line 6<br /><br /><pre>SELECT * FROM ps_smart_blog_post p INNER JOIN 
+				ps_smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                ps_smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = 1
+				WHERE pl.id_lang=1 
+				AND pl.id_smart_blog_post =
+				ORDER BY p.id_smart_blog_post LIMIT 1</pre> at line 639 in file classes/db/Db.php
+*ERROR* 	2015/08/03 - 18:00:38: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY p.id_smart_blog_post LIMIT 1' at line 6<br /><br /><pre>SELECT * FROM ps_smart_blog_post p INNER JOIN 
+				ps_smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                ps_smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = 1
+				WHERE pl.id_lang=1 
+				AND pl.id_smart_blog_post =
+				ORDER BY p.id_smart_blog_post LIMIT 1</pre> at line 639 in file classes/db/Db.php

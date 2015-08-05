@@ -67,8 +67,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 
 		
 		$blogId = $_GET['id_smart_blog_post'];
-
-		$sellerId = $this->context->controller->seller->id;
+        $sellerId = $this->context->controller->seller->id;
 	
 		$data = self::getPost($blogId);
 		if(count($data) > 0)
@@ -111,7 +110,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 				if(empty($this->errors)) {
 					$s = $this->saveBlog();
 				 	self::$smarty->assign('cfmmsg_flag',1);
-				 	Tools::redirect('http://gy.local/en/module/smartsellerblog/smartform?id_smart_blog_post='.$s);
+				 	Tools::redirect('http://testguidingyou.local/en/module/smartsellerblog/smartform?id_smart_blog_post='.$s);
 				 }
 			}
 			else {
@@ -288,9 +287,10 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		if($check === false) {
 			$query = "INSERT INTO "._DB_PREFIX_."smart_blog_images (`id_smart_blog_post`, `id_author`, `img_name`)VALUES
 			(".$id_smart_blog_post.",".$id_seller.",'".$file_name."')";
+		Db::getInstance()->execute($query);
 		} 
 
-		Db::getInstance()->execute($query);
+		
 	}
 
 	public function getImages($id_seller,$id_smart_blog_post) {

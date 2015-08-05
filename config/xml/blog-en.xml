@@ -13,12 +13,62 @@
 	<atom:link href="http://www.prestashop.com/blog/en/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.prestashop.com/blog/en</link>
 	<description></description>
-	<lastBuildDate>Fri, 31 Jul 2015 19:47:38 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 03 Aug 2015 15:46:43 +0000</lastBuildDate>
 	<language>en-US</language>
 		<sy:updatePeriod>hourly</sy:updatePeriod>
 		<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>http://wordpress.org/?v=3.8.1</generator>
 	<item>
+		<title>What is the difference between a Product Attribute and Product Feature?</title>
+		<link>https://www.prestashop.com/blog/en/difference-product-attribute-product-feature/</link>
+		<comments>https://www.prestashop.com/blog/en/difference-product-attribute-product-feature/#comments</comments>
+		<pubDate>Mon, 03 Aug 2015 15:46:43 +0000</pubDate>
+		<dc:creator><![CDATA[Julie Liu]]></dc:creator>
+				<category><![CDATA[Best Development Practices]]></category>
+
+		<guid isPermaLink="false">https://www.prestashop.com/blog/en/?p=20444</guid>
+		<description><![CDATA[<p>If it’s hard for you to tell the difference between product attributes and product features, don’t panic; you’re not alone! In this article, we’ll clarify the difference between product attributes and features, show you some great examples on PrestaShop stores and, last but not least, show you how to set both up on your online [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.prestashop.com/blog/en/difference-product-attribute-product-feature/">What is the difference between a Product Attribute and Product Feature?</a> appeared first on <a rel="nofollow" href="https://www.prestashop.com/blog/en">EN - Ecommerce blog by PrestaShop</a>.</p>
+]]></description>
+				<content:encoded><![CDATA[<p>If it’s hard for you to tell the difference between product attributes and product features, don’t panic; you’re not alone! </p>
+<p>In this article, we’ll clarify the difference between product attributes and features, show you some great examples on PrestaShop stores and, last but not least, show you how to set both up on your online store.<br />
+<span id="more-20444"></span></p>
+<h2 style="color:#247789">Product Attributes and Product Features</h2>
+<p>The first thing you need to know about attributes and features is that they both help describe your product in detail to your customers. However, unlike a product description, attributes and features don’t paint a picture of your product; instead, they highlight a short list of the main features that are likely to interest your customers. </p>
+<h2 style="color:#247789">Product Feature vs Product Attribute</h2>
+<p>Copying the product features and attributes right out of another website is a bad idea, not only because you risk creating duplicate content, but also because depending on your product offer, your competitor’s product features might be your product attributes. </p>
+<p>The best way to distinguish whether a description of the product is an attribute or feature, is by asking yourself, </p>
+<p style="font-style:italic;text-align:center">“Can I sell it as a separate product?”</p>
+<p>If you <strong>can</strong> sell it as a separate product, it’s should be listed as a product <strong>attribute</strong>.<br />
+If you <strong>can’t</strong> sell it as a separate product, it should be listed as a product <strong>feature</strong>. </p>
+<p>Take the ring sold by Macintyres below: if it comes in other materials, like gold and silver, each one can be added as a product attribute, giving customers the possibility to customize their ring setting. If it’s only available in one metal, you’d list it as a feature like they did. </p>
+<h2 style="color:#247789">Examples of Product Attributes and Features</h2>
+<p>The first step to creating something great is taking a look at some great examples. Here are 3 different shops that have successfully set up product attributes and features:</p>
+<h4><a href="http://www.macintyres.co.uk/diamond-solitaire-rings/5906-platinum-princess-cut-diamond-solitaire-ring-pc-070-d-020.html" target="_blank">Macintyres</a></h4>
+<p>Unlike the previous examples, Macintyres lists their product features first. For this ring, you’ll see the weight category, cut, setting and metal used. At the bottom of the product page, customers can select the attribute, or size they’d like. </p>
+<p><img class="aligncenter size-full wp-image-20448" alt="macintyres" src="https://www.prestashop.com/blog/en/files/2015/08/macintyres.png" width="994" height="928" /></p>
+<h4><a href="http://www.bimbaylola.com/shoponline/product.php?id_product=12000&amp;id_category=846&amp;sav=1" target="_blank">Bimba Y Lola</a></h4>
+<p>Here’s the product page for “Casual Trousers with Trim.” Under product name and price you’ll find product attributes, colors and sizes. Further down the same column, you’ll find product features: relaxed fit, sporty trousers, cotton side trim detail and pockets with plastic maxi-zips. </p>
+<p><img src="https://www.prestashop.com/blog/en/files/2015/08/bimbaylola-1024x747.png" alt="bimbaylola" width="700" height="510" class="aligncenter size-large wp-image-20446" /></p>
+<h4><a href="http://www.guitarfromspain.com/en/premium-flamenco-guitars/97-alhambra-10fc-flamenco-guitar.html#/right_left_handed-left_handed/electronics-e2_fishman_prefix_pr" target="_blank">Guitar from Spain</a></h4>
+<p>This Alhambra 10FC Flamenco Guitar from Guitar from Spain has a few product attributes to pick from: the type of electronics included, as well as left or right-handed operation. If you navigate further down the page, you’ll see product features like the type of material used for the top, sides and back, neck, fingerboard and machine heads. </p>
+<p><img src="https://www.prestashop.com/blog/en/files/2015/08/guitarfromspain.png" alt="guitarfromspain" width="783" height="741" class="aligncenter size-full wp-image-20447" /></p>
+<h2 style="color:#247789">Adding Product Attributes in PrestaShop</h2>
+<p>Now that you know what to list for product features and product attributes, it’s time to add them to your shop. Let’s use the ring setting example from Macintyres. </p>
+<p>From your PrestaShop back office, hover over “catalog,” then click “Product Attributes.” If the attribute isn’t already listed, click “Add new attribute,” name the attribute (which in this case is setting metal), fill out the SEO information and select the attribute type. Once you click save, the product attribute should appear in the list. </p>
+<p>To add values within the product attribute, click “Add new value.” Select “Setting Metal,” the new attribute group we created, from the list and enter the first one, “Gold,” then enter the SEO information, and either select a color or upload a texture. Once you’re done, click “save and add another value,” then repeat this section for the “silver” setting metal. </p>
+<p>And there you have it: you just added your first product attribute group! </p>
+<h2 style="color:#247789">Adding Product features in PrestaShop </h2>
+<p>The process for adding product features is exactly the same as that of product attributes. </p>
+<p>First, create new features, then add add new feature values within the feature. Keep in mind that you’ll have the opportunity to add product feature values directly when you’re creating a product. Simply type them in to add them as a new product feature. </p>
+<hr style="width:20%;text-align:center">
+<p>We hope we’ve cleared up the difference between a product feature and attribute. Have additional questions? List them in the comments below. Then get back to adding all the features and attributes you need for your online shop! </p>
+<p>The post <a rel="nofollow" href="https://www.prestashop.com/blog/en/difference-product-attribute-product-feature/">What is the difference between a Product Attribute and Product Feature?</a> appeared first on <a rel="nofollow" href="https://www.prestashop.com/blog/en">EN - Ecommerce blog by PrestaShop</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.prestashop.com/blog/en/difference-product-attribute-product-feature/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
 		<title>PrestaShop security release</title>
 		<link>https://www.prestashop.com/blog/en/prestashop-security-release/</link>
 		<comments>https://www.prestashop.com/blog/en/prestashop-security-release/#comments</comments>
@@ -608,45 +658,6 @@ Want to see your site evaluated? Send us an email at <a href="mailto:ecommerce-e
 ]]></content:encoded>
 			<wfw:commentRss>https://www.prestashop.com/blog/en/website-evaluation-les-minions/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>Delivering a new and improved v1.6.1.0</title>
-		<link>https://www.prestashop.com/blog/en/delivering-new-improved-v1-6-1-0/</link>
-		<comments>https://www.prestashop.com/blog/en/delivering-new-improved-v1-6-1-0/#comments</comments>
-		<pubDate>Thu, 02 Jul 2015 16:49:11 +0000</pubDate>
-		<dc:creator><![CDATA[Julie Liu]]></dc:creator>
-				<category><![CDATA[PrestaShop News]]></category>
-
-		<guid isPermaLink="false">https://www.prestashop.com/blog/en/?p=20269</guid>
-		<description><![CDATA[<p>Earlier this month, at PrestaShop Day, we unveiled our Puffin mascot &#8211; Preston. He might be the first thing you notice about PrestaShop v1.6.1.0. However, this version brings more than just a pretty face. It boasts huge performance optimizations, enhanced EU compliance, refined tax, price calculations and more than 500 improvements. Read on to see [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.prestashop.com/blog/en/delivering-new-improved-v1-6-1-0/">Delivering a new and improved v1.6.1.0</a> appeared first on <a rel="nofollow" href="https://www.prestashop.com/blog/en">EN - Ecommerce blog by PrestaShop</a>.</p>
-]]></description>
-				<content:encoded><![CDATA[<p>Earlier this month, at PrestaShop Day, we unveiled our Puffin mascot &#8211; Preston. He might be the first thing you notice about PrestaShop v1.6.1.0. However, this version brings more than just a pretty face. It boasts huge performance optimizations, enhanced EU compliance, refined tax, price calculations and more than 500 improvements. Read on to see all of the goodness in version 1.6.1.0!</p>
-<p><span id="more-20269"></span></p>
-<h2><span style="color: #251b5b">Back Office Facelift</span></h2>
-<p>Changes to the back office are mainly cosmetic, but we managed to squeeze in a few improvements to contrast and visibility in the navigation. Essentially, we gave it a facelift. It still resembles the back office you’re used to – it’s just better. Changes include new logos, images, colors, and a few other design elements.</p>
-<p><img class="alignleft size-large wp-image-20296" alt="new-design-B-2" src="https://www.prestashop.com/blog/en/files/2015/07/new-design-B-2-1024x528.png" width="700" height="360" /></p>
-<h2><span style="color: #251b5b">Better, faster, stronger!</span></h2>
-<p><img class="alignright size-full wp-image-20272" alt="prestashop-release-1.6.1.0-preston01" src="https://www.prestashop.com/blog/en/files/2015/07/prestashop-release-1.6.1.0-preston01.png" width="147" height="223" />Borrowing from Daft Punk, we’ve made significant improvements to software performance by targeting SQL queries. We’ve made one optimization after another to ensure that your store works lightning fast! How fast you ask? Up to 200% faster at carrying out back office operations &#8211; talk about saving time!</p>
-<p>This also means your website will be better equipped for traffic peaks. Great news for high traffic sale days! Get the details about our <a href="http://build.prestashop.com/news/prestashop-1-6-1-0-performances/" target="_blank">tests and results on our developer blog</a>.</p>
-<h2><span style="color: #251b5b">New Coding Standards</span></h2>
-<p>We’ve reached a new chapter in PrestaShop’s coding history. To optimize the software, we adopted a new coding architecture. Moving forward, all new code contributed on GitHub should follow the <a href="http://build.prestashop.com/news/prestashop-moves-to-psr-2/" target="_blank">PSR-2 Coding Style Guide</a>. Implementing these new rules will help keep code integrity. This will also be instrumental in the unit testing process.</p>
-<h2><span style="color: #251b5b">&#8220;Advanced EU Compliance&#8221; Module</span></h2>
-<p>The European Union took almost a decade to form. This new union comes with a complex set of rules and regulations that can be very challenging for online merchants with international stores. Many of you have asked for features that help you meet local EU regulations, and we’ve responded! We’ve added 15 options into the “Advanced EU Compliance module” that you can use to achieve better legal compliance, faster.</p>
-<p><img class="alignleft size-large wp-image-20293" alt="advanced-eu-compliance" src="https://www.prestashop.com/blog/en/files/2015/07/advanced-eu-compliance-1024x524.png" width="700" height="358" /></p>
-<h2><span style="color: #251b5b">Taxes and price calculations</span></h2>
-<p>No one loves taxes, but it’s at the heart of the check-out process so we spent time working on your taxes! Specifically, we refined the rounding of prices and tax management.</p>
-<h2><span style="color: #251b5b">But that’s not all!</span></h2>
-<p>In addition to our major fixes, we’ve refined the installation, the update process, the search function and back office controls. All bug updates can be reviewed in our <a href="https://www.prestashop.com/en/developers-versions/changelog/1.6.1.0-stable" target="_blank">changelog</a>.</p>
-<p>With this new release, we’re adopting another new practice: an updated <a href="http://build.prestashop.com/news/a-more-semantic-versioning-scheme/" target="_blank">Semantic Versioning Scheme</a>. This helps to clarify each software release and lets you see all changes faster.</p>
-<h2><span style="color: #251b5b">Last but not least&#8230;</span></h2>
-<p>We’d like to thank the community for all their contributions on the Forge, GitHub, Crowdin and more. We wouldn’t have gotten this far without your continued help and support! A very special shout-out to:</p>
-<p><em>Adonis Karavokyros, Alessandro Corbelli, alexsimple, Antonino Di Bella, Arnaud Lemercier, Benjamin, PONGY, bercik999, Bruno Desprez, Cédric Fontaine, Dan Hlavenka, Danoosh Mir, David-Julian BUCH, Denver Prophit Jr., Desbouche Christophe, Dimitrios Karvounaris, doekia, Dvir-Julius, el-tenkova, eleazar, Eric Rouvier, Etienne Samson, fird, Francis Ramirez, Frédéric BENOIST, Germain Tenthorey, Gordon Coubrough, Guillaume Leseur, Gytis Škėma, indesign47, Jocelyn Fournier, joseantgv, Julien Deniau, Krystian Podemski, Ladel, Léo, MaX3315, natrim, Nicolas Sorosac, nodexpl, oleacorner, Pan P., pbirnzain, Pedro J. Parra, PhpMadman, PrestaEdit, Richard LT, Roland Schütz, Samy Rabih, Sébastien Monterisi, SebSept, Shagshag, Steven Sulley, Tomáš Votruba, tucoinfo, unlocomqx, vitekj, zimmi1, ZiZuu.com</em></p>
-<p><strong><a href="https://www.prestashop.com/en/download" target="_blank">Download the latest version of PrestaShop</a></strong> or <strong><a href="https://www.prestashop.com/en/create-your-online-store" target="_blank">create your PrestaShop Cloud store</a></strong> today to enjoy this new version!</p>
-<p>The post <a rel="nofollow" href="https://www.prestashop.com/blog/en/delivering-new-improved-v1-6-1-0/">Delivering a new and improved v1.6.1.0</a> appeared first on <a rel="nofollow" href="https://www.prestashop.com/blog/en">EN - Ecommerce blog by PrestaShop</a>.</p>
-]]></content:encoded>
-			<wfw:commentRss>https://www.prestashop.com/blog/en/delivering-new-improved-v1-6-1-0/feed/</wfw:commentRss>
-		<slash:comments>9</slash:comments>
 		</item>
 	</channel>
 </rss>
