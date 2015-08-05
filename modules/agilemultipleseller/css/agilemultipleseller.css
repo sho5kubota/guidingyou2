@@ -621,3 +621,19 @@ table { border-collapse: collapse; border-spacing: 0; }
 input#seller_terms.width10 {
     width:10% ;
 }
+a.additionalLink{
+    font-size: 1.4em;
+    color: #e64b65;
+    display:block;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+@media (min-width: 769px){
+    .withAdditional{
+    display:inline-block;
+    margin-right:30px;
+    }  
+    a.additionalLink{
+      display: inline-block;
+    }
+}

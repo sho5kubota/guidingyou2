@@ -4,7 +4,8 @@
 <pre>{$langs|@print_r}</pre> *}
 <div id="agile">
 <div class="panel">
-<h1>{l s='My Seller Account' mod='agilemultipleseller'}</h1>
+<h1 class="withAdditional">{l s='My Seller Account' mod='agilemultipleseller'}</h1>
+<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
 {include file="$tpl_dir./errors.tpl"}
         <script type="text/javascript">	
         var iso = "{$isoTinyMCE}";
@@ -65,7 +66,9 @@
 
 {if isset($seller_exists) AND $seller_exists}
     <form action="{$link->getModuleLink('agilemultipleseller', 'sellerbusiness', [], true)}" enctype="multipart/form-data" method="post" class="form-horizontal std">
-        <h3>{l s='Your business information' mod='agilemultipleseller'}</h3>
+        <h3 class="withAdditional">{l s='Your business information' mod='agilemultipleseller'}</h3>
+        <a href="{$link->getCMSLink('23','how-to-enter-guide-information')|escape:'html'}" class="additionalLink" style="font-size:1.2em;">{l s ='How to enter your Guide information' mod='agilemultipleseller'}</a>
+
         <input type="hidden" name="token" value="{$token}" />
 	
 	<div class="form-group">

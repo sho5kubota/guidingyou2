@@ -1,6 +1,7 @@
 {capture name=path}<a href="{$link->getPageLink('my-account', true)}">{l s='My Account' mod='agilemultipleseller'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='My Seller Account'  mod='agilemultipleseller'}{/capture}
 
-<h1>{l s='My Seller Account' mod='agilemultipleseller'}</h1>
+<h1 class="withAdditional">{l s='My Seller Account' mod='agilemultipleseller'}</h1>
+<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
 {include file="$tpl_dir./errors.tpl"}
 
 

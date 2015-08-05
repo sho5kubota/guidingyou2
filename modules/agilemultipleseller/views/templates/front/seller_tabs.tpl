@@ -69,6 +69,9 @@
 					{/if}
 				{/if}
 			{/if}
+			<li>
+				<a href="{$link->getModuleLink('smartsellerblog', 'smartlist', [])}">Blog</a>
+			</li>
 		</ul>
 	</nav>
 	<div id="nav-trigger">

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>agilepaypal</name>
+	<displayName><![CDATA[Agile Paypal]]></displayName>
+	<version><![CDATA[1.6.4.2]]></version>
+	<description><![CDATA[Accepts payments through PayPal and allows customer to skip account registration]]></description>
+	<author><![CDATA[addons-modules.com]]></author>
+	<tab><![CDATA[payments_gateways]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to uninstall your this module?]]></confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>
