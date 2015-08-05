@@ -36,7 +36,6 @@ class SmartSellerBlog extends Module {
       !Configuration::updateValue('MYMODULE_NAME', 'my friend')
     )
       return false;
-
    
     return true;
   }

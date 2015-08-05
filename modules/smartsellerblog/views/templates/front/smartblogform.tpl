@@ -1,5 +1,5 @@
- {* <pre>{$blog|@print_r}</pre>  *}
-<!-- <pre>{$post|@print_r}</pre> -->
+ {* <pre>{$categories|@print_r}</pre>  *}
+ {* <pre>{$blog|@print_r}</pre> *}
 <div id="agile">
 	<div class="panel">
 		{if not isset($blog['id_smart_blog_post'])}
@@ -8,8 +8,7 @@
 			{assign var="id_blog" value=$blog['id_smart_blog_post']}
 		{/if}
 		
-		<h1 class="withAdditional">{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
-		<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s ='Explanation of guide membar' mod='agilemultipleseller'}</a>
+		<h1>{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
 		{include file="$tpl_dir./errors.tpl"}
 		{include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
 		<div class="row" {if $hasOwnerShip eq 1}{else}style="display:none;"{/if}>
@@ -41,6 +40,27 @@
 					value="{$post['title']}"
 					{/if}
 					/>
+				</div>	
+			</div>
+
+
+			<div class="form-group">
+				<label class="control-label col-sm-3 col-md-3 col-lg-3 col-xl-3" for="title">
+					<span>{l s='Category' mod='smartsellerblog'}</span>
+				</label>
+
+				<div class="col-sm-7 col-md-5 col-lg-5 col-xl-5">
+					<select name="category">
+						{foreach from=$categories key=key item=value}
+							<option 
+							{if isset($blog['id_smart_blog_post'])}
+								{if $blog['id_category'] eq $value['id_smart_blog_category']}
+									selected="selected"
+								{/if}
+							{/if}
+							value="{$value['id_smart_blog_category']}" >{$value['meta_title']}</option>
+						{/foreach}
+					</select>
 				</div>	
 			</div>
 
@@ -82,7 +102,7 @@
 		      </label>
 
 		      <div id="img_upload" class="agile-col-md-7 agile-col-lg-7 agile-col-xl-5" >
-						<input {if !isset($blog['id_smart_blog_post'])}disabled="disabled"{/if} name="img"  type="file" class="form-control" >
+						<input name="img"  type="file" class="form-control" >
 						<!-- <input {if empty($blog)}disabled="disabled"{/if} name="img"  type="file" class="form-control file" data-overwrite-initial="false" data-min-file-count="1"> -->
 		      </div>
 		    </div>
@@ -107,7 +127,7 @@
 				</label>
 
 				<div id="youtube" class="col-sm-7 col-md-5 col-lg-5 col-xl-5">
-					<input  {if !isset($blog['id_smart_blog_post'])}disabled="disabled"{/if} type="text" name="youtube" class="form-control" {if isset($blog['id_smart_blog_post'])}value="{$blog['youtube']}"{/if} />
+					<input type="text" name="youtube" class="form-control" {if isset($blog['id_smart_blog_post'])}value="{$blog['youtube']}"{/if} />
 				</div>	
 			</div>
 
