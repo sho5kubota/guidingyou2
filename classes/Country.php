@@ -249,6 +249,25 @@ class CountryCore extends ObjectModel
 		return (int)$result['id_country'];
 	}
 
+	public static function getIdByLikeName($id_lang = null, $country)
+	{
+		$sql = '
+		SELECT `id_country`
+		FROM `'._DB_PREFIX_.'country_lang`
+		WHERE `name` LIKE \''.pSQL($country).'%\'';
+		if ($id_lang)
+			$sql .= ' AND `id_lang` = '.(int)$id_lang;
+
+		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql);
+
+		$ids_loc = array();
+		foreach ($result as $key => $value) {
+			$ids_loc[] = $value['id_country'];
+		}
+
+		return $ids_loc;
+	}
+
 	public static function getNeedZipCode($id_country)
 	{
 		if (!(int)$id_country)
