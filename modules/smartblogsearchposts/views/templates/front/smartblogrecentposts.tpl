@@ -12,7 +12,12 @@
              {$options.slug= $post.link_rewrite}
              <li>
                  <a class="image" title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">
+                    {if $post.post_img != 'no'}
                      <img alt="{$post.meta_title}" src="{$modules_dir}/smartblog/images/{$post.id_author}/{$post.post_img}-home-small.jpg">
+                    {else}
+                      <img alt="{$post.meta_title}" src="{$modules_dir}/smartblog/images/{$post.post_img}-home-small.jpg">
+                    {/if}
+
                  </a>
                  <a class="title"  title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">{$post.meta_title}</a>
                <span class="info">{$post.created|date_format:"%b %d, %Y"}</span>
