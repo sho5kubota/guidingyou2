@@ -4,11 +4,17 @@
 <div id="agile">
 	<div class="block-center clearfix" id="block-history">
 		<div class="row">
-			<div class="agile-col-sm-2">
+			<div class="ynsLinkButtonLeft">
 			<a class="agile-btn agile-btn-default" href="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post' =>0], true)}">
 					<i class="icon-plus-sign"></i>&nbsp;{l s='Add New' mod='smartsellerblog'}
 			</a>
 			</div>
+			{*<span class="ynsLinkButton clearfix">
+			  <a class="agile-btn agile-btn-default" href="{$link->getModuleLink('smartsellerblog', 'smartlist')}">
+				<i class="icon-th-list"></i>&nbsp;{l s=' Back to blog list' mod='agilemultipleseller'}
+			  </a>
+			</span>*}
+{*			<a href="{smartblog::GetSmartBlogLink('smartblog_sellers',$seller)}" style="float:right">{l s="Go to this guide page" mod="smartblog"}</a>*}
 			{* <div class="agile-col-sm-5">
 				<div class="row">
 					<div class="agile-col-sm-3">
@@ -67,14 +73,14 @@
 <table id="product-list" class="std">
 	<thead>
 		<tr>
-			<th class="first_item" style="width:60px">{l s='ID' mod='smartsellerblog'}</th>
-			<th class="item" style="width:20%">{l s='Media' mod='smartsellerblog'}</th>
+			<th class="first_item" >{l s='ID' mod='smartsellerblog'}</th>
+			<th class="item" >{l s='Media' mod='smartsellerblog'}</th>
 			<th class="item">{l s='Category' mod='smartsellerblog'}</th>
 			<th class="item">{l s='Name' mod='smartsellerblog'}</th>
 			<th class="item">{l s='Description' mod='smartsellerblog'}</th>
-			<th class="item" style="width:80px">{l s='Active' mod='smartsellerblog'}</th>
+			<th class="item" >{l s='Active' mod='smartsellerblog'}</th>
 
-			<th class="item" style="width:80px">{l s='Action' mod='smartsellerblog'}</th>
+			<th class="item" >{l s='Action' mod='smartsellerblog'}</th>
 
 	        </tr>
 	</thead>

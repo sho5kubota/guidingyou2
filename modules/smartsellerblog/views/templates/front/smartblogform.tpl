@@ -12,9 +12,17 @@
 		<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='smartsellerblog'}</a>
 		{include file="$tpl_dir./errors.tpl"}
 		{include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
+			<span class="ynsLinkButton clearfix">
+			  <a class="agile-btn agile-btn-default" href="{$link->getModuleLink('smartsellerblog', 'smartlist')}">
+				<i class="icon-th-list"></i>&nbsp;{l s=' Back to blog list' mod='agilemultipleseller'}
+			  </a>
+			</span>
+		
+		
 		<div class="row" {if $hasOwnerShip eq 1}{else}style="display:none;"{/if}>
 		<form action="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post' => $id_blog], true)}" enctype="multipart/form-data" method="post" class="form-horizontal std">
 			<h3>{l s='Create new blog' mod='smartsellerblog'}</h3>
+
 
 			<input type="hidden" name="id_smart_blog_post" 
 			{if !isset($blog['id_smart_blog_post'])}
