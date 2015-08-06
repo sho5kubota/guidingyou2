@@ -67,8 +67,9 @@ class smartblogsearchposts extends Module {
                            
                            $page =  SmartBlogPost::getSearchPostsCount($id_lang, $search_loc, $search_words);
                            $i = 0;
+                           // die('<pre>'.print_r($posts,true));
                            foreach($posts as $post) {
-                               if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_smart_blog_post'] . '.jpg') )
+                               if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg') )
                                {
                                   $image =   $post['id_smart_blog_post'];
                                   $posts[$i]['post_img'] = $image;
