@@ -397,6 +397,134 @@ class SmartBlogPost extends ObjectModel
 		
 		return $result;
         }
+
+    public static function getSearchPosts($id_lang = null, $search_loc, $search_words){
+      if($id_lang == null){
+        $id_lang = (int)Context::getContext()->language->id;
+      }
+
+      if(Configuration::get('smartshowrecentpost') != '' && Configuration::get('smartshowrecentpost') != null){
+        $limit = Configuration::get('smartshowrecentpost');
+      } else {
+        $limit = 5;
+      }
+
+       $page = 0;
+      if(isset($_GET['pb'])) {
+        $page = ($_GET['pb'] <= 0)? 1 : $_GET['pb'];
+         $start_from = ($page-1) * $limit; 
+          
+      } else {
+        $start_from = 0;
+      }
+      $start_from = ($start_from <= 0)? 0 : $start_from;
+
+      $id_locs = self::getSellersLocationId($search_loc);
+      $id_locs = implode(',', $id_locs);
+      $author_query = !empty($id_locs)? 'id_author IN ('.$id_locs.') AND' : 'id_author IN (099) AND';
+
+      $word_query = "";
+      if(!empty($search_words))
+        $word_query = "(pl.meta_title LIKE '%".pSQL($search_words)."%' OR pl.short_description LIKE '%".pSQL($search_words)."%' OR pl.content LIKE '%".pSQL($search_words)."%') AND ";
+
+
+      // die('Start: '.$start_from . ' Page: '. $page);
+
+    $query =    'SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE '.$author_query. $word_query . '
+                pl.id_lang='.$id_lang.'  AND p.active = 1 ORDER BY p.id_smart_blog_post DESC LIMIT '.$start_from.','.$limit;
+
+    $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
+
+   /* die('SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE '.$author_query. $word_query . '
+                pl.id_lang='.$id_lang.'  AND p.active = 1 ORDER BY p.id_smart_blog_post DESC LIMIT '.$start_from.','.$limit);*/
+    // die('<pre>'.print_r($result,true));
+    
+    // $result['query'] = $query;
+
+    return $result;
+    }
+
+    public static function getSearchPostsCount($id_lang = null, $search_loc, $search_words) {
+
+      if($id_lang == null){
+        $id_lang = (int)Context::getContext()->language->id;
+      }
+
+      if(Configuration::get('smartshowrecentpost') != '' && Configuration::get('smartshowrecentpost') != null){
+        $limit = Configuration::get('smartshowrecentpost');
+      } else {
+        $limit = 5;
+      }
+      $id_locs = self::getSellersLocationId($search_loc);
+      $id_locs = implode(',', $id_locs);
+      $author_query = !empty($id_locs)? 'id_author IN ('.$id_locs.') AND' : 'id_author IN (099) AND';
+
+      $word_query = "";
+      if(!empty($search_words))
+        $word_query = "(pl.meta_title LIKE '%".pSQL($search_words)."%' OR pl.short_description LIKE '%".pSQL($search_words)."%' OR pl.content LIKE '%".pSQL($search_words)."%') AND ";
+
+
+      $count = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
+                'SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
+                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
+                WHERE '.$author_query. $word_query . '
+                pl.id_lang='.$id_lang.'  AND p.active = 1');
+
+    $total_records = count($count);
+    $num_rec_per_page = 5;
+
+    $total_pages = ceil($total_records / $num_rec_per_page);
+
+    $page = 0;
+      if(isset($_GET['pb'])) {
+        $page = ($_GET['pb'] <= 0)? 1 : $_GET['pb'];
+         $start_from = ($page-1) * $num_rec_per_page; 
+          
+      } else {
+        $start_from = 0;
+      }
+      $start_from_final = ($start_from <= 0)? 0 : $start_from;
+
+    $result['total_records'] = $total_records;
+    $result['num_rec_per_page'] = $num_rec_per_page;
+    $result['total_pages'] = $total_pages;
+    $result['start_from'] = $start_from_final;
+    $result['current_page'] = $page;
+
+    if($page == 0) {
+      $result['previous_page'] = 0;
+      $result['next_page'] = 2;
+    } else {
+      $result['previous_page'] = ($page <= 1)? 1 : $page - 1;
+      $result['next_page'] = ($page>$total_pages-1)? $total_pages : $page+1;
+    }
+
+      return $result;
+    }
+
+    public static function getSellersLocationId($search_loc) {
+
+      $id_loc = Country::getIdByLikeName(1,$search_loc);
+
+      $ids_loc = !empty($id_loc)? implode(',', $id_loc) : 099;
+
+      $query = "SELECT s.id_seller FROM "._DB_PREFIX_."sellerinfo s WHERE id_country IN (". $ids_loc . ")";
+
+      $data = Db::getInstance()->executeS($query);
+
+      $locations = array();
+      foreach($data as $value)
+        $locations[] = $value['id_seller'];
+
+      return $locations;
+    }
     
     public static function tagsPost($tags, $id_lang = null){
         if($id_lang == null)
