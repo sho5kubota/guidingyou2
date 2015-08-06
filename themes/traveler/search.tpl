@@ -23,6 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+
 {capture name=path}{l s='Search'}{/capture}
 
 <h1 
@@ -46,6 +47,9 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
 </h1>
 
 {include file="$tpl_dir./errors.tpl"}
+
+{hook h="displaySearchBlog"}
+
 {if !$nbProducts}
 	<p class="alert alert-warning">
 		{if isset($search_query) && $search_query}
