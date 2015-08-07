@@ -147,7 +147,8 @@ class SmartSellerBlogSmartListModuleFrontController extends AgileModuleFrontCont
 		FROM " . _DB_PREFIX_ . "smart_blog_post sb 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_post_lang sbl ON sb.id_smart_blog_post = sbl.id_smart_blog_post 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_category_lang sbcl ON sbcl.id_smart_blog_category = sb.id_category
-		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " AND sb.active=1 "
+		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " AND sb.active=1 
+		ORDER BY sb.created DESC "
 		."LIMIT ".$page_position.",".$limit;
 
 		$blogs = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql);
