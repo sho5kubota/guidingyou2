@@ -272,7 +272,8 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 				return $this->displayError($this->l('Invalid image'));
 			else {
 				$ext = substr($FILES['img']['name'], strrpos($FILES['img']['name'], '.') + 1);
-                $file_name = $id_smart_blog_post . '.' . $ext;
+                // $file_name = $id_smart_blog_post . '.' . $ext;
+                $file_name = $id_smart_blog_post . '.' . 'jpg';
                 $path = _PS_MODULE_DIR_ .'smartblog/images/'.$id_seller.'/' . $file_name;
                 if (!move_uploaded_file($FILES['img']['tmp_name'], $path))
 					return $this->displayError($this->l('An error occurred while attempting to upload the file.'));
