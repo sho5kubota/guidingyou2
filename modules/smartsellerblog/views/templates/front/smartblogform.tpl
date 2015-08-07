@@ -1,5 +1,6 @@
  {* <pre>{$categories|@print_r}</pre>  *}
  {* <pre>{$blog|@print_r}</pre> *}
+ {capture name=path}<a href="{$link->getPageLink('my-account.php')}">{l s='My Account' mod='agilemultipleseller'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Guide Blog'  mod='smartsellerblog'}{/capture}
 <div id="agile">
 	<div class="panel">
 		{if not isset($blog['id_smart_blog_post'])}
@@ -80,7 +81,8 @@
 			<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
 			<script type="text/javascript">
         tinymce.init({
-            selector: ".textarea"
+            selector: ".textarea",
+            plugins: "autoresize"
         });
     </script>
 

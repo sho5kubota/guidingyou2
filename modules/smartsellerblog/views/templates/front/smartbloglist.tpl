@@ -1,3 +1,5 @@
+{capture name=path}<a href="{$link->getPageLink('my-account.php')}">{l s='My Account' mod='agilemultipleseller'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Guide Blog'  mod='smartsellerblog'}{/capture}
+
 <h1 class="withAdditional">{l s='My Guiding Blog' mod='smartsellerblog'}</h1>
 <a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='smartsellerblog'}</a>
 {include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}

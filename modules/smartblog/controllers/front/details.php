@@ -53,6 +53,7 @@ class  smartblogDetailsModuleFrontController extends smartblogModuleFrontControl
                                             'created'=>$post['created'],
                                             'firstname'=>$post['firstname'],
                                             'lastname'=>$post['lastname'],
+                                            'seller_alias'=> strtolower($post['firstname']) .'-' . strtolower($post['lastname']),
                                             'smartcustomcss' => Configuration::get('smartcustomcss'),
                                             'smartshownoimg' => Configuration::get('smartshownoimg'),
                                             'comment_status'=>$post['comment_status'],
