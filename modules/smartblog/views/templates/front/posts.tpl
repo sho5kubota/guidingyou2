@@ -48,13 +48,17 @@
 				}
 			</style>
 
-       
-				{if !empty($youtube)}
-				<div class="videoWrapper">
-					{$youtube}
+			<div class="container">
+				<div class="row">
+		       		<div class="col-md-8 col-md-offset-2 ">
+						{if !empty($youtube)}
+						<div class="videoWrapper">
+							{$youtube}
+						</div>
+						{/if}
+					</div>
 				</div>
-				{/if}
-		
+			</div>
 
             <div class="sdsarticle-des">
 
