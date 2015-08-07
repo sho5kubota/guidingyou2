@@ -172,8 +172,8 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		// insert new data
 		$title = Tools::getValue('title');
 		$link_rewrite = Tools::str2url($title);
-		$short_description = Tools::getValue('short_description');
-		$content = Tools::getValue('content');
+		$short_description = htmlentities(Tools::getValue('short_description'));
+		$content = htmlentities(Tools::getValue('content'));
 		$id_category 	= Tools::getValue('category');
 		$youtube 	= Tools::getValue('youtube');
 
