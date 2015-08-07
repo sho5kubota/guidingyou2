@@ -1,31 +1,41 @@
-{* <pre>{$page|@print_r}</pre>  *}
 {* <pre>{$posts|@print_r}</pre> *}
+{* <pre>{$seller_options|@print_r}</pre> *}
+<div class="block">
+    <h2 class='sdstitle_block'>{l s='Seller\'s Blog' mod='smartbloglist'}</h2>
+    {* <h2 class='sdstitle_block'>{l s='Seller\'s Blog' mod='smartbloglist'}</h2> *}
+    <div class="sdsblog-box-content">
+        {if isset($posts) AND !empty($posts)}
+            {assign var='i' value=1}
+            {foreach from=$posts item=post}
+               
+                    {assign var="options" value=null}
+                    {$options.id_post = $post.id_smart_blog_post}
+                    {$options.slug = $post.link_rewrite}
+                    <div id="sds_blog_post" class="col-xs-12 col-sm-4 col-md-3">
+                        <span class="news_module_image_holder">
+                            <a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">
+                             {if $post.post_img != "no" }
+                             
+                             <img alt="{$post.meta_title}" class="feat_img_small" src="{$modules_dir}smartblog/images/{$post.id_author}/{$post.post_img}-home-default.jpg">
+                             {else}
+                             <img itemprop="image" alt="{$post.meta_title}" src="{$modules_dir}/smartblog/images/{$post.post_img}-single-default.jpg" class="imageFeatured">
+                             </a>
+                             {/if}
+                        </span>
+                        <span>{$post.created}</span>
+                        <h4 class="sds_post_title"><a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">{$post.meta_title}</a></h4>
+                        <p>
+                            {$post.short_description|strip_tags|html_entity_decode}
+                        </p>
+                        <a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}"  class="r_more">{l s='Read More' mod='smartbloglist'}</a>
+                    </div>
+                
+                {$i=$i+1}
+            {/foreach}
+        {/if}
+     </div>
 
-{if isset($posts) AND !empty($posts)}
-<div id="recent_article_smart_blog_block_left"  class="block blogModule boxPlain">
-   <h2 class='sdstitle_block'><a href="{smartblog::GetSmartBlogLink('smartblog')}">{l s='Blog Result' mod='smartblogsearchposts'}</a></h2>
-   <div class="block_content sdsbox-content">
-      <ul class="recentArticles">
-        {foreach from=$posts item="post"}
-             {assign var="options" value=null}
-             {$options.id_post= $post.id_smart_blog_post}
-             {$options.slug= $post.link_rewrite}
-             <li>
-                 <a class="image" title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">
-                    {if $post.post_img != 'no'}
-                     <img alt="{$post.meta_title}" src="{$modules_dir}/smartblog/images/{$post.id_author}/{$post.post_img}-home-small.jpg">
-                    {else}
-                      <img alt="{$post.meta_title}" src="{$modules_dir}/smartblog/images/{$post.post_img}-home-small.jpg">
-                    {/if}
-
-                 </a>
-                 <a class="title"  title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">{$post.meta_title}</a>
-               <span class="info">{$post.created|date_format:"%b %d, %Y"}</span>
-             </li>
-         {/foreach}
-            </ul>
-
-      {if $page['total_records'] > 5}
+     {if $page['total_records'] > 5}
       <!-- Pagination -->
       <ul class="pagination">
         <li id="pagination_previous" class="{if $page['previous_page'] == $page['current_page'] }disabled{/if} pagination_previous">
@@ -56,7 +66,4 @@
         </li>
       </ul>
       {/if}
-
-   </div>
 </div>
-{/if}

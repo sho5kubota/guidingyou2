@@ -427,10 +427,10 @@ class SmartBlogPost extends ObjectModel
       if(!empty($search_words))
         $word_query = "(pl.meta_title LIKE '%".pSQL($search_words)."%' OR pl.short_description LIKE '%".pSQL($search_words)."%' OR pl.content LIKE '%".pSQL($search_words)."%') AND ";
 
-
+ 
       // die('Start: '.$start_from . ' Page: '. $page);
 
-    $query =    'SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite, p.id_author FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
+    $query =    'SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite, p.id_author, pl.short_description FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
                 WHERE '.$author_query. $word_query . '

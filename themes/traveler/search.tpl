@@ -48,7 +48,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
 
 {include file="$tpl_dir./errors.tpl"}
 
-{hook h="displaySearchBlog"}
+
 
 {if !$nbProducts}
 	<p class="alert alert-warning">
@@ -90,3 +90,4 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </div>
     </div>
 {/if}
+{hook h="displaySearchBlog"}
