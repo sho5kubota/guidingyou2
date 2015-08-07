@@ -1,4 +1,5 @@
 {capture name=path}<a href="{smartblog::GetSmartBlogLink('smartblog')}">{l s='All Blog News' mod='smartblog'}</a><span class="navigation-pipe">{$navigationPipe}</span>{$meta_title}{/capture}
+{assign var=seller value=['id_seller' => $id_author, 'slug' => $seller_alias]}
 <div id="content" class="block">
    <div itemtype="#" itemscope="" id="sdsblogArticle" class="blog-post">
    		<div class="page-item-title">
@@ -9,11 +10,20 @@
                         {$catOptions.id_category = $id_category}
                         {$catOptions.slug = $cat_link_rewrite}
                      <span>
-               {l s='Posted by ' mod='smartblog'} {if $smartshowauthor ==1}&nbsp;<i class="icon icon-user"></i><span itemprop="author">{if $smartshowauthorstyle != 0}{$firstname} {$lastname}{else}{$lastname} {$firstname}{/if}</span>&nbsp;<i class="icon icon-calendar"></i>&nbsp;<span itemprop="dateCreated">{$created|date_format}</span>{/if}&nbsp;&nbsp;<i class="icon icon-tags"></i>&nbsp;<span itemprop="articleSection"><a href="{smartblog::GetSmartBlogLink('smartblog_category',$catOptions)}">{$title_category}</a></span> &nbsp;<i class="icon icon-comments"></i>&nbsp; {if $countcomment != ''}{$countcomment}{else}{l s='0' mod='smartblog'}{/if}{l s=' Comments' mod='smartblog'}</span>
+               {l s='Posted by ' mod='smartblog'} 
+               {if $smartshowauthor ==1}&nbsp;
+               <a href="{smartblog::GetSmartBlogLink('smartblog_sellers',$seller)}">
+               <i class="icon icon-user"></i>
+               <span itemprop="author">{if $smartshowauthorstyle != 0}{$firstname} {$lastname}{else}{$lastname} {$firstname}{/if}
+               </span>
+               </a>
+
+
+               &nbsp;<i class="icon icon-calendar"></i>&nbsp;<span itemprop="dateCreated">{$created|date_format}</span>{/if}&nbsp;&nbsp;<i class="icon icon-tags"></i>&nbsp;<span itemprop="articleSection"><a href="{smartblog::GetSmartBlogLink('smartblog_category',$catOptions)}">{$title_category}</a></span> &nbsp;<i class="icon icon-comments"></i>&nbsp; {if $countcomment != ''}{$countcomment}{else}{l s='0' mod='smartblog'}{/if}{l s=' Comments' mod='smartblog'}</span>
                   <a title="" style="display:none" itemprop="url" href="#"></a>
       </div>
       <div itemprop="articleBody">
-            <div id="lipsum" class="articleContent">
+            <div id="lipsum" class="articleContent" style="margin-bottom: 30px;margin-top: 30px;">
                     {assign var="activeimgincat" value='0'}
                     {$activeimgincat = $smartshownoimg} 
                     {* {if ($post_img != "no" && $activeimgincat == 0) || $activeimgincat == 1} *}
@@ -39,11 +49,17 @@
 			</style>
 
        
-				{if !empty($youtube)}
-				<div class="videoWrapper">
-					{$youtube}
+				<div class="container">
+				<div class="row">
+		       		<div class="col-md-8 col-md-offset-2 " style="margin-bottom: 70px;">
+						{if !empty($youtube)}
+						<div class="videoWrapper">
+							{$youtube}
+						</div>
+						{/if}
+					</div>
 				</div>
-				{/if}
+			</div>
 		
 
             <div class="sdsarticle-des">
