@@ -52,14 +52,14 @@ class smartbloghomelatestnews extends Module {
                 }
                 else
                 {
-                            if (!$this->isCached('smartblog_latest_news.tpl', $this->getCacheId()))
+                            if (!$this->isCached('smartblog_latest_news.tpl'))
                                 {
                                     $view_data['posts'] = SmartBlogPost::GetPostLatestHome(Configuration::get('smartshowhomepost')); 
                                     $this->smarty->assign( array(
                                               'view_data'     	 => $view_data['posts']
                                     ));
                                 }
-                            return $this->display(__FILE__, 'views/templates/front/smartblog_latest_news.tpl', $this->getCacheId());
+                            return $this->display(__FILE__, 'views/templates/front/smartblog_latest_news.tpl');
                 }  
             }
             
