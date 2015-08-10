@@ -112,7 +112,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 	public function postProcess() {
 
 		if(Tools::isSubmit('saveBlog')) {
-			
+			// die('<pre>'.print_r($this->errors,true));
 			if($_GET['id_smart_blog_post'] == 0 || !isset($_GET['id_smart_blog_post'])) {
 			
 				$this->validateBlog();
@@ -124,11 +124,12 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 				 }
 			}
 			else {
-				if(empty($this->errors)) {
+				
 					$this->validateBlog();
-					$this->updateBlog();
-					self::$smarty->assign('cfmmsg_flag',1);
-				}
+					if(empty($this->errors)) {
+						$this->updateBlog();
+						self::$smarty->assign('cfmmsg_flag',1);
+					}
 			}
 		}
 	}
@@ -138,7 +139,7 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		$blogId 	= $_GET['id_smart_blog_post'];
 		$sellerId = $this->context->controller->seller->id;
 		$title 		= htmlentities(Tools::getValue('title'));
-		$short_desc = htmlentities(Tools::getValue('short_description'));
+		$short_desc = strip_tags(Tools::getValue('short_description'));
 		$content 	= htmlentities(Tools::getValue('content'));
 		$status 	= Tools::getValue('active');
 		$youtube 	= Tools::getValue('youtube');
@@ -218,8 +219,11 @@ class SmartSellerBlogSmartFormModuleFrontController extends AgileModuleFrontCont
 		if(empty($_POST['title']))
 			$this->errors[] = Tools::displayError('Title is required!');
 			
-		if(mb_strlen($_POST['short_description']) < 10)
-			$this->errors[] = Tools::displayError('Short description should be atleast 10 characters!');
+		// if(mb_strlen($_POST['short_description']) < 10)
+			// $this->errors[] = Tools::displayError('Short description should be atleast 10 characters!');
+
+			// if(mb_strlen($_POST['short_description']) > 450)
+			// $this->errors[] = Tools::displayError('Short description maximum characters is 450!');
 
 		if(!Validate::isAbsoluteUrl($_POST['youtube']))
 			$this->errors[] = Tools::displayError('Invalid URL!');
