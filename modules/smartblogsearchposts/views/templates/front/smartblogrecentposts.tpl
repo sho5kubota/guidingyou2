@@ -25,7 +25,7 @@
                         <span>{$post.created}</span>
                         <h4 class="sds_post_title"><a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">{$post.meta_title}</a></h4>
                         <p>
-                            {$post.short_description|strip_tags|html_entity_decode}
+                            {$post.short_description|truncate:270:'...':true}
                         </p>
                         <a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}"  class="r_more">{l s='Read More' mod='smartbloglist'}</a>
                     </div>
@@ -35,7 +35,12 @@
         {/if}
      </div>
 
-     {if $page['total_records'] > 5}
+     
+</div>
+
+<div class="clearfix"></div>
+
+{if $page['total_records'] > 5}
       <!-- Pagination -->
       <ul class="pagination">
         <li id="pagination_previous" class="{if $page['previous_page'] == $page['current_page'] }disabled{/if} pagination_previous">
@@ -66,4 +71,3 @@
         </li>
       </ul>
       {/if}
-</div>
