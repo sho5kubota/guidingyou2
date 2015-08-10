@@ -419,16 +419,44 @@ class SmartBlogPost extends ObjectModel
       }
       $start_from = ($start_from <= 0)? 0 : $start_from;
 
-      $id_locs = self::getSellersLocationId($search_loc);
-      $id_locs = implode(',', $id_locs);
-      $author_query = !empty($id_locs)? 'id_author IN ('.$id_locs.') AND' : 'id_author IN (099) AND';
+      $search_locs = explode(" ", $search_loc);
+
+      $sellers_id = array();
+
+      foreach ($search_locs as $key => $loc) {
+        $states = self::getSellersStateId($loc);
+        if(count($states) > 0)
+          $sellers_id['state'][$loc] = self::getSellersStateId($loc);
+        
+        $sellers = self::getSellersLocationId($loc);
+        if(count($sellers) > 0)
+          $sellers_id['seller'][$loc] = self::getSellersLocationId($loc);
+
+        $city = self::getSellersCityId($loc);
+        if(count($city) > 0)
+          $sellers_id['city'][$loc] = self::getSellersCityId($loc);
+
+      }
+      
+      $sellers_id_list = array();
+      foreach ($sellers_id as $key => $value) {
+
+        foreach ($value as $k => $v) {
+          if(!in_array($v, $sellers_id_list))
+          $sellers_id_list[] = $v;
+        }
+
+      }
+
+      $ids = self::flatten($sellers_id_list);
+
+      $ids_locs = implode(',', $ids);
+    
+      $author_query = !empty($ids)? 'id_author IN ('.$ids_locs.') AND' : 'id_author IN (999) AND';
 
       $word_query = "";
       if(!empty($search_words))
         $word_query = "(pl.meta_title LIKE '%".pSQL($search_words)."%' OR pl.short_description LIKE '%".pSQL($search_words)."%' OR pl.content LIKE '%".pSQL($search_words)."%') AND ";
-
- 
-      // die('Start: '.$start_from . ' Page: '. $page);
 
     $query =    'SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite, p.id_author, pl.short_description FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
                 '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
@@ -436,16 +464,9 @@ class SmartBlogPost extends ObjectModel
                 WHERE '.$author_query. $word_query . '
                 pl.id_lang='.$id_lang.'  AND p.active = 1 ORDER BY p.id_smart_blog_post DESC LIMIT '.$start_from.','.$limit;
 
-    $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
+        // die($query);
 
-   /* die('SELECT  p.id_smart_blog_post,p.created,pl.meta_title,pl.link_rewrite FROM '._DB_PREFIX_.'smart_blog_post p INNER JOIN 
-                '._DB_PREFIX_.'smart_blog_post_lang pl ON p.id_smart_blog_post=pl.id_smart_blog_post INNER JOIN 
-                '._DB_PREFIX_.'smart_blog_post_shop ps ON pl.id_smart_blog_post = ps.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id.'
-                WHERE '.$author_query. $word_query . '
-                pl.id_lang='.$id_lang.'  AND p.active = 1 ORDER BY p.id_smart_blog_post DESC LIMIT '.$start_from.','.$limit);*/
-    // die('<pre>'.print_r($result,true));
-    
-    // $result['query'] = $query;
+    $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
 
     return $result;
     }
@@ -461,9 +482,41 @@ class SmartBlogPost extends ObjectModel
       } else {
         $limit = 5;
       }
-      $id_locs = self::getSellersLocationId($search_loc);
-      $id_locs = implode(',', $id_locs);
-      $author_query = !empty($id_locs)? 'id_author IN ('.$id_locs.') AND' : 'id_author IN (099) AND';
+
+      $search_locs = explode(" ", $search_loc);
+
+      $sellers_id = array();
+
+      foreach ($search_locs as $key => $loc) {
+        $states = self::getSellersStateId($loc);
+        if(count($states) > 0)
+          $sellers_id['state'][$loc] = self::getSellersStateId($loc);
+        
+        $sellers = self::getSellersLocationId($loc);
+        if(count($sellers) > 0)
+          $sellers_id['seller'][$loc] = self::getSellersLocationId($loc);
+
+        $city = self::getSellersCityId($loc);
+        if(count($city) > 0)
+          $sellers_id['city'][$loc] = self::getSellersCityId($loc);
+
+      }
+      
+      $sellers_id_list = array();
+      foreach ($sellers_id as $key => $value) {
+
+        foreach ($value as $k => $v) {
+          if(!in_array($v, $sellers_id_list))
+          $sellers_id_list[] = $v;
+        }
+
+      }
+
+      $ids = self::flatten($sellers_id_list);
+
+      $ids_locs = implode(',', $ids);
+    
+      $author_query = !empty($ids)? 'id_author IN ('.$ids_locs.') AND' : 'id_author IN (999) AND';
 
       $word_query = "";
       if(!empty($search_words))
@@ -509,6 +562,12 @@ class SmartBlogPost extends ObjectModel
       return $result;
     }
 
+    public static function flatten(array $array) {
+      $return = array();
+      array_walk_recursive($array, function($a) use (&$return) { $return[] = $a; });
+      return $return;
+    }
+
     public static function getSellersLocationId($search_loc) {
 
       $id_loc = Country::getIdByLikeName(1,$search_loc);
@@ -516,6 +575,39 @@ class SmartBlogPost extends ObjectModel
       $ids_loc = !empty($id_loc)? implode(',', $id_loc) : 099;
 
       $query = "SELECT s.id_seller FROM "._DB_PREFIX_."sellerinfo s WHERE id_country IN (". $ids_loc . ")";
+
+      $data = Db::getInstance()->executeS($query);
+
+      $locations = array();
+      foreach($data as $value)
+        $locations[] = $value['id_seller'];
+
+      return $locations;
+    }
+
+    public static function getSellersStateId($search_loc) {
+
+      $id_state_loc = State::getIdByNameLike($search_loc);
+
+      $ids_state_loc = (count($id_state_loc) > 0)? implode(",", $id_state_loc) : 999;
+
+      $query = "SELECT s.id_seller FROM "._DB_PREFIX_."sellerinfo s WHERE id_state IN (". $ids_state_loc . ")";
+
+      $data = Db::getInstance()->executeS($query);
+
+      $locations = array();
+      foreach($data as $value)
+        $locations[] = $value['id_seller'];
+
+      return $locations;
+    }
+
+    public static function getSellersCityId($search_loc) {
+
+      $query = "SELECT sl.id_sellerinfo, s.id_seller 
+                FROM "._DB_PREFIX_."sellerinfo_lang sl 
+                INNER JOIN "._DB_PREFIX_."sellerinfo s ON s.id_sellerinfo = sl.id_sellerinfo
+                WHERE sl.city LIKE '". pSQL($search_loc) . "%' AND id_lang = 1";
 
       $data = Db::getInstance()->executeS($query);
 
