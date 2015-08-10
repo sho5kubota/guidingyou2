@@ -26,7 +26,7 @@
                         <span>{$post.date_added}</span>
                         <h4 class="sds_post_title"><a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}">{$post.title}</a></h4>
                         <p>
-                            {$post.short_description}
+                            {$post.short_description|truncate:270:'...':true}
                         </p>
                         <a href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}"  class="r_more">{l s='Read More' mod='smartbloglist'}</a>
                     </div>
