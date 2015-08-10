@@ -5,7 +5,7 @@
 {include file="$tpl_dir./errors.tpl"}
 
 {include file="$agilemultipleseller_views./templates/front/seller_tabs.tpl"}
-<a href="{$link->getCMSLink('24','how-to-enter-services')|escape:'html'}" class="additionalLink" style="font-size:1.4em;margin-left:5px;">{l s='How to enter your services' mod='agilemultipleseller'}</a>
+<a href="{$link->getCMSLink('24','how-to-enter-services')|escape:'html'}" class="additionalLink" style="margin-left:5px;">{l s='How to enter your services' mod='agilemultipleseller'}</a>
 {if isset($isSeller) AND $isSeller}
 <div id="agile">
 <div class="block-center clearfix" id="block-history">

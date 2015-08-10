@@ -13,9 +13,17 @@
 		<a href="{$link->getCMSLink('22','whats-guide-member')|escape:'html'}" class="additionalLink">{l s='Explanation of guide member' mod='smartsellerblog'}</a>
 		{include file="$tpl_dir./errors.tpl"}
 		{include file="modules/agilemultipleseller/views/templates/front/seller_tabs.tpl"}
+			<span class="ynsLinkButton clearfix">
+			  <a class="agile-btn agile-btn-default" href="{$link->getModuleLink('smartsellerblog', 'smartlist')}">
+				<i class="icon-th-list"></i>&nbsp;{l s=' Back to blog list' mod='agilemultipleseller'}
+			  </a>
+			</span>
+		
+		
 		<div class="row" {if $hasOwnerShip eq 1}{else}style="display:none;"{/if}>
 		<form action="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post' => $id_blog], true)}" enctype="multipart/form-data" method="post" class="form-horizontal std">
 			<h3>{l s='Create new blog' mod='smartsellerblog'}</h3>
+
 
 			<input type="hidden" name="id_smart_blog_post" 
 			{if !isset($blog['id_smart_blog_post'])}
@@ -81,7 +89,8 @@
 			<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
 			<script type="text/javascript">
         tinymce.init({
-            selector: ".textarea",
+
+            selector: ".editor",
             plugins: "autoresize"
         });
     </script>
@@ -92,7 +101,7 @@
 				</label>
 
 				<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7">
-					<textarea class="textarea"  cols="26" rows="13" id="content" name="content">{if isset($blog['id_smart_blog_post'])}{$blog['content']}{elseif !empty($post['content'])}{$post['content']}{/if}</textarea>
+					<textarea class="textarea editor"  cols="26" rows="13" id="content" name="content">{if isset($blog['id_smart_blog_post'])}{$blog['content']}{elseif !empty($post['content'])}{$post['content']}{/if}</textarea>
 				</div>	
 			</div>
 
