@@ -1,3 +1,4 @@
+
 {if isset($no_follow) AND $no_follow}
     {assign var='no_follow_text' value='rel="nofollow"'}
 {else}

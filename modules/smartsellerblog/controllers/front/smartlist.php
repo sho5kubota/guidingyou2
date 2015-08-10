@@ -125,6 +125,8 @@ class SmartSellerBlogSmartListModuleFrontController extends AgileModuleFrontCont
 
     	$blogs = self::getUserBlogs($lang_id, $id_seller, $page_position, $blog_nb);
 
+    	// die('<pre>'.print_r($blogs,true));
+
     	$smartData = array(
     		'blogs' => $blogs,
     		'seller_tab_id' => 7,
@@ -147,7 +149,7 @@ class SmartSellerBlogSmartListModuleFrontController extends AgileModuleFrontCont
 		FROM " . _DB_PREFIX_ . "smart_blog_post sb 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_post_lang sbl ON sb.id_smart_blog_post = sbl.id_smart_blog_post 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_category_lang sbcl ON sbcl.id_smart_blog_category = sb.id_category
-		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " AND sb.active=1 
+		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " 
 		ORDER BY sb.created DESC "
 		."LIMIT ".$page_position.",".$limit;
 
@@ -160,7 +162,7 @@ class SmartSellerBlogSmartListModuleFrontController extends AgileModuleFrontCont
   		$sql = "
   		SELECT COUNT(*) AS total
   		FROM "._DB_PREFIX_."smart_blog_post s 
-  		WHERE s.active = 1 AND s.id_author =".$id_seller."
+  		WHERE s.id_author =".$id_seller."
   		";
 
   		$row = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql);
