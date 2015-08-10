@@ -911,4 +911,9 @@ div.sdsarticleHeader > span > span > a{
 p.sdstitle_block a{
     color:#333;
 }
-
+div#sdsblogArticle > .post-info > span > a{
+    color:#11a8ab;   
+}
+div#sdsblogArticle > .post-info > span > span > a{
+    color:#11a8ab;   
+}
