@@ -8904,6 +8904,11 @@ margin-left:0px;
   padding:5px;
   margin-left:20px;
 }
+table#product-list td:nth-child(2) a.thumbnail{
+       border:none;
+       padding:0px;
+       margin:0px; 
+}
 
 @media (max-width: 500px){
     .ynsLinkButton a{
@@ -8987,4 +8992,11 @@ margin-left:0px;
         display:table-cell;
         width:20%;
     } 
+}
+@media (max-width: 768px){
+	div#sds_blog_post{
+		border-bottom: 1px solid #e4e1e2;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
 }

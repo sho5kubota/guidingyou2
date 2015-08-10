@@ -89,14 +89,10 @@
         <tr>
         	<td class="pointer left">{$blog['id_smart_blog_post']}</td>
         	<td class="pointer center">
-        		<div class="row">
-				  <div class="col-xs-6 col-md-6">
-				    <a href="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post'=> $blog['id_smart_blog_post']], true)}" class="thumbnail">
+        		    <a href="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post'=> $blog['id_smart_blog_post']], true)}" class="thumbnail">
 				      <img src="{$modules_dir}/smartblog/images/{$blog['id_author']}/{$blog['id_smart_blog_post']}-home-default.jpg" alt="{$meta_title}">
 				    </a>
-				  </div>
-				</div>
-        	</td>
+			</td>
         	<td class="pointer left">{$blog['cat_title']}</td>
         	<td class="pointer left"><a href="{$link->getModuleLink('smartsellerblog', 'smartform', ['id_smart_blog_post' => $blog['id_smart_blog_post']], true)}">{$blog['meta_title']}</a></td>
         	<td class="pointer left">{$blog['short_description']|html_entity_decode|strip_tags:true}</td>

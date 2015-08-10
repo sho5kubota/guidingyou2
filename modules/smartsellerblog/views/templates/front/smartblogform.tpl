@@ -88,7 +88,8 @@
 			<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
 			<script type="text/javascript">
         tinymce.init({
-            selector: ".textarea"
+            selector: ".editor",
+            plugins: "autoresize"
         });
     </script>
 
@@ -98,7 +99,7 @@
 				</label>
 
 				<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7">
-					<textarea class="textarea"  cols="26" rows="13" id="content" name="content">{if isset($blog['id_smart_blog_post'])}{$blog['content']}{elseif !empty($post['content'])}{$post['content']}{/if}</textarea>
+					<textarea class="textarea editor"  cols="26" rows="13" id="content" name="content">{if isset($blog['id_smart_blog_post'])}{$blog['content']}{elseif !empty($post['content'])}{$post['content']}{/if}</textarea>
 				</div>	
 			</div>
 
