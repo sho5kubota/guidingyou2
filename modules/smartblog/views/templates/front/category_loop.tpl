@@ -7,7 +7,7 @@
          {assign var="options" value=null}
                             {$options.id_post = $post.id_post} 
                             {$options.slug = $post.link_rewrite}
-                            <p class='sdstitle_block'><a title="{$post.meta_title}" href='{smartblog::GetSmartBlogLink('smartblog_post',$options)}'>{$post.meta_title}</a><a href="{$link->getAgileSellerLink($post.id_author)}" style="float:right">{l s="Go to this guide page" mod="smartblog"}</a></p>
+                            <p class='sdstitle_block'><a title="{$post.meta_title}" href='{smartblog::GetSmartBlogLink('smartblog_post',$options)}'>{$post.meta_title}</a></p>
 
 
              {assign var="options" value=null}
@@ -49,7 +49,13 @@
                   {assign var="options" value=null}
                         {$options.id_post = $post.id_post}  
                         {$options.slug = $post.link_rewrite}  
-                         <span class="more"><a title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}" class="r_more">{l s='Read more' mod='smartblog'} </a></span>
+                        
+                         <span class="more">
+                         <a class="r_more" href="{$link->getAgileSellerLink($post.id_author)}" >{l s="Go to this guide page" mod="smartblog"}</a>
+                         </span>
+
+                          <span class="more"><a title="{$post.meta_title}" href="{smartblog::GetSmartBlogLink('smartblog_post',$options)}" class="r_more">{l s='Read more' mod='smartblog'} </a>
+                         </span>
         </div>
    </div>
 </div>

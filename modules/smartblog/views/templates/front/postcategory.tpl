@@ -22,7 +22,28 @@
              {/foreach}  
         {/if}
     {/if}
+ 
+    <div class="row">
+        <div class="col-md-6">
+        {if $page_type=='seller'}
+            <h5><b>{$postcategory[0]['firstname']} {$postcategory[0]['lastname']} {l s='Blog' mod='smartblog'}</b></h5>
+        {/if}
+        </div>
+
+        <div class="col-md-6">
+        {if $page_type=='seller'}
+            <h6><b>
+            <a href="{$link->getAgileSellerLink($postcategory[0]['id_author'])}">
+                {$postcategory[0]['firstname']} {$postcategory[0]['lastname']} {l s='Guide Page' mod='smartblog'}
+            </a>
+            </b></h6>
+        {/if}
+        </div>
+
+    </div>
+
     <div id="smartblogcat" class="block">
+   
 {foreach from=$postcategory item=post}
     {include file="./category_loop.tpl" postcategory=$postcategory}
 {/foreach}

@@ -18,6 +18,7 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
            $title_category = '';
            $cat_link_rewrite = '';
            $seller_slug = '';
+           $page_type = '';
             $blogcomment = new Blogcomment();
             $SmartBlogPost = new SmartBlogPost();
             $BlogCategory = new BlogCategory();
@@ -31,13 +32,16 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                 
                 if($id_category == false AND $id_seller == false)
                 {      
+                    $page_type = 'general';
                     $total = $SmartBlogPost->getToltal($this->context->language->id);
                 } else if($id_seller) {
+                        $page_type = 'seller';
                         $seller_info = $BlogCategory->getSellerInfo($id_seller);
                         $seller_slug = substr($seller_info[0]['virtual_uri'],0, -1);
     
                          $total = $SmartBlogPost->getToltalBySeller($this->context->language->id, $id_seller);
                 } else{
+                        $page_type = 'category';
                         $total = $SmartBlogPost->getToltalByCategory($this->context->language->id,$id_category);
                         Hook::exec('actionsbcat', array('id_category' => Tools::getvalue('id_category')));
                 }
@@ -115,7 +119,8 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                                             'smartshowviewed' => Configuration::get('smartshowviewed'),
                                             'post_per_page'=>$posts_per_page,
                                             'pagenums' => $totalpages - 1,
-                                            'totalpages' =>$totalpages
+                                            'totalpages' =>$totalpages,
+                                            'page_type' => $page_type
                                             ));
             
        $template_name  = 'postcategory.tpl';

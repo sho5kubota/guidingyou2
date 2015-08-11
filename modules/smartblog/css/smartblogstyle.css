@@ -13,7 +13,7 @@
     padding-bottom: 5px;
 }
 .sdsarticleHeader span, .sdsarticleHeader span a {
-    font-size: 11px;
+    font-size: 15px;
 }
 .sdsarticleHeader span a {
     text-decoration: none;
@@ -530,7 +530,7 @@ div.relProduct .price-new {
     margin-bottom: 10px;
 }
 .sdsarticleHeader span{
-    font-size: 12px;
+    /*font-size: 12px;*/
     line-height: 18px;
 }
 .sdsarticle-des{
