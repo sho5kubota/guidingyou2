@@ -902,5 +902,18 @@ form#searchbox {
 }
 
 /** ª add 20150628 **/ 
-
-
+div.sdsarticleHeader > span > span > a{
+    color:#11a8ab;
+}
+.sdsreadMore .more a {
+    color:#11a8ab;   
+}
+p.sdstitle_block a{
+    color:#333;
+}
+div#sdsblogArticle > .post-info > span > a{
+    color:#11a8ab;   
+}
+div#sdsblogArticle > .post-info > span > span > a{
+    color:#11a8ab;   
+}
