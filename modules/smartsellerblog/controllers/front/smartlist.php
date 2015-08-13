@@ -144,18 +144,50 @@ class SmartSellerBlogSmartListModuleFrontController extends AgileModuleFrontCont
 
   	public static function getUserBlogs($lang_id, $id_seller, $page_position,$limit) {
 
-  		$sql = "
+  		/*$sql = "
 		SELECT DISTINCT sb.id_smart_blog_post, sb.id_category, sb.created, sbl.meta_title, sbl.short_description, sbcl.meta_title AS cat_title, sb.active, sb.id_author
 		FROM " . _DB_PREFIX_ . "smart_blog_post sb 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_post_lang sbl ON sb.id_smart_blog_post = sbl.id_smart_blog_post 
 		INNER JOIN ". _DB_PREFIX_ ."smart_blog_category_lang sbcl ON sbcl.id_smart_blog_category = sb.id_category
 		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " 
 		ORDER BY sb.created DESC "
+		."LIMIT ".$page_position.",".$limit;*/
+
+		$sql = "
+		SELECT DISTINCT sb.id_smart_blog_post, sb.id_category, sb.created, sbl.meta_title, sbl.short_description, sb.active, sb.id_author
+		FROM " . _DB_PREFIX_ . "smart_blog_post sb 
+		INNER JOIN ". _DB_PREFIX_ ."smart_blog_post_lang sbl ON sb.id_smart_blog_post = sbl.id_smart_blog_post 
+		WHERE sbl.id_lang = " . $lang_id . " AND sb.id_author = ".$id_seller->id . " 
+		ORDER BY sb.created DESC "
 		."LIMIT ".$page_position.",".$limit;
+
+		$cats = self::getBlogCategories();
 
 		$blogs = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql);
 
+		foreach ($blogs as $key => $value) {
+			$id_category = $value['id_category'];
+			$blogs[$key]['id_category'] = $id_category;
+			$blogs[$key]['cat_title'] = $cats[$id_category];
+		}
+
 		return $blogs;
+  	}
+
+  	public static function getBlogCategories() {
+  		$query = "SELECT meta_title, id_smart_blog_category
+  				  FROM "._DB_PREFIX_."smart_blog_category_lang
+  				  WHERE id_lang = 1";
+  		$cats = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($query);
+
+  		$categories = array();
+  		foreach ($cats as $key => $value) {
+  			$id_cat = $value['id_smart_blog_category'];
+  			$title = $value['meta_title'];
+  			$categories[$id_cat] = $title;
+  		}
+
+		return $categories;
   	}
 
   	public function getTotalAuthorBlogs($id_seller) {

@@ -339,12 +339,14 @@ class smartblog extends Module {
                 ),
             ),
             'smartblog_month' => array(
-                'controller' => 'archive',
-                'rule' =>       $alias.'/archive/{year}/{month}'.$html,
-                'keywords' => array(
-                    'year' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'year'),
-                    'month' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'month'),
-                ),
+                'controller'    => 'archive',
+                'rule'          => $alias.'/archive/{year}/{month}/{seller_id}'.$html,
+                'keywords'      => 
+                    array(
+                        'year'      => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'year'),
+                        'month'     => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'month'),
+                        'seller_id' => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'seller_id'),
+                    ),
                 'params' => array(
                     'fc' => 'module',
                     'module' => 'smartblog',
@@ -352,11 +354,12 @@ class smartblog extends Module {
             ),
             'smartblog_month_pagination' => array(
                 'controller' => 'archive',
-                'rule' =>       $alias.'/archive/{year}/{month}/page/{page}'.$html,
+                'rule' =>       $alias.'/archive/{year}/{month}/{seller_id}/page/{page}'.$html,
                 'keywords' => array(
                     'year' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'year'),
                     'month' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'month'),
                     'page' =>   array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'page'),
+                    'seller_id' =>   array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'seller_id'),
                 ),
                 'params' => array(
                     'fc' => 'module',
@@ -365,9 +368,10 @@ class smartblog extends Module {
             ),
             'smartblog_year' => array(
                 'controller' => 'archive',
-                'rule' =>       $alias.'/archive/{year}'.$html,
+                'rule' =>       $alias.'/archive/{year}/{seller_id}'.$html,
                 'keywords' => array(
-                    'year' =>    array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'year'),
+                    'year' => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'year'),
+                    'seller_id' => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'seller_id'),
                 ),
                 'params' => array(
                     'fc' => 'module',

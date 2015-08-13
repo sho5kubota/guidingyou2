@@ -622,7 +622,7 @@ input#seller_terms.width10 {
     width:10% ;
 }
 a.additionalLink{
-    font-size: 1.2em!important;
+    font-size: 1em!important;
     color: #e64b65;
     display:block;
     margin-bottom: 10px;

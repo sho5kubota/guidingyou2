@@ -22,25 +22,42 @@
              {/foreach}  
         {/if}
     {/if}
- 
+    
     <div class="row">
         <div class="col-md-6">
-        {if $page_type=='seller'}
-            <h5><b>{$postcategory[0]['firstname']} {$postcategory[0]['lastname']} {l s='Blog' mod='smartblog'}</b></h5>
+        {if $page_type=='seller' || $page_type == 'archive'}
+            <h3>{$postcategory[0]['firstname']} {$postcategory[0]['lastname']} {l s='Blog' mod='smartblog'}</h3>
         {/if}
         </div>
 
         <div class="col-md-6">
-        {if $page_type=='seller'}
-            <h6><b>
+        {if $page_type=='seller' || $page_type == 'archive'}
+            <h3>
             <a href="{$link->getAgileSellerLink($postcategory[0]['id_author'])}">
                 {$postcategory[0]['firstname']} {$postcategory[0]['lastname']} {l s='Guide Page' mod='smartblog'}
             </a>
-            </b></h6>
+            </h3>
         {/if}
         </div>
 
     </div>
+
+    {if $page_type=='seller' || $page_type == 'archive'}
+    <div class="row">
+        <div class="col-md-12">
+        <a href="{smartblog::GetSmartBlogLink('smartblog_year', ['year' => $year['prev'], 'seller_id' => $id_author])}"> << </a> 
+        {$year['current']} 
+        <a href="{smartblog::GetSmartBlogLink('smartblog_year', ['year' => $year['next'], 'seller_id' => $id_author])}"> >> </a>
+            <div class="btn-group">
+              {foreach from=$date['month'] item=m key=key}
+                {assign var=arch value=['year' => $date['year'][$key], 'month' => $key, 'seller_id' => $id_author]}
+                  <a href="{smartblog::GetSmartBlogLink('smartblog_month', $arch)}" class="btn btn-{if $key==$active_month}warning{else}default{/if}">{$m}</a>
+              {/foreach}
+            </div>
+        </div>
+    </div>
+    {/if}
+
 
     <div id="smartblogcat" class="block">
    
@@ -48,12 +65,21 @@
     {include file="./category_loop.tpl" postcategory=$postcategory}
 {/foreach}
     </div>
-    
+   <pre>{$page|@print_r}</pre>
     {if !empty($pagenums)}
     <div class="row">
     <div class="post-page col-md-12">
             <div class="col-md-6">
                 <ul class="pagination">
+
+                    {if $limit_start > 0}
+                        {assign var='p_previous' value=$k-1}
+                        <li id="pagination_previous"><a rel="{$p_previous}" class="pagination_page_number" href="">&laquo;&nbsp;{l s='Previous' mod='smartsellerblog'}</a>
+                        </li>
+                    {else}
+                        <li id="pagination_previous" class="disabled"><span>&laquo;&nbsp;{l s='Previous' mod='smartsellerblog'}</span></li>
+                    {/if}
+
                     {for $k=0 to $pagenums}
                         {if $title_category != ''}
                             {assign var="options" value=null}
@@ -70,6 +96,7 @@
                             {$options.page = $k+1}
                         {/if}
                         {* <pre>{$options|@print_r}</pre> *}
+
                         {if ($k+1) == $c}
                             <li><span class="page-active">{$k+1}</span></li>
                         {else}
@@ -82,6 +109,18 @@
                                 {/if}
                         {/if}
                    {/for}
+                   {if $limit_start <= 0 }
+                       {*  {assign var="options" value=null}
+                        {$options.page = $page['next']}
+                        {$options.id_seller = $id_author}
+                        {$options.slug = $seller_slug}
+                        <li id="pagination_next"><a class="pagination_page_number"  href="{smartblog::GetSmartBlogLink('smartblog_category_pagination',$options)}">
+                        {l s='Next' mod='smartsellerblog'}&nbsp;&raquo;</a>
+                        </li> *}
+                    {else}
+                        <li id="pagination_next" class="disabled"><span>{l s='Next' mod='smartsellerblog'}&nbsp;&raquo;</span></li>
+                    {/if}
+
                 </ul>
 			</div>
 			<div class="col-md-6">
@@ -95,3 +134,6 @@
         {$smartcustomcss}
     </style>
 {/if}
+
+
+

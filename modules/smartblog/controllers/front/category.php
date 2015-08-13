@@ -95,6 +95,29 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                 }
             }
             
+            /******* MONTHS *********/
+            $date = self::get_months();
+            $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $count_actual_link = count(explode('/',$actual_link));
+            $active_link = explode('/', $actual_link);
+            end($active_link);
+            $active_month = prev($active_link);
+
+            $year = array();
+
+            $year['current'] = date('Y');
+            $year['prev'] = $year['current'] - 1;
+            $year['next'] = $year['current'] + 1;
+
+            if($count_actual_link == 8) {
+                $page['current'] = str_replace('.html','',end($active_link));
+                $page['next'] = $page['current'] + 1;
+                $page['prev'] = $page['current'] - 1;
+            } else {
+                $page['current'] = 1;
+                $page['next'] = $page['current'] + 1;
+                $page['prev'] =  0;
+            }
 
             $this->context->smarty->assign( array(
                                             'postcategory'=>$allNews,
@@ -120,11 +143,26 @@ class smartblogCategoryModuleFrontController extends smartblogModuleFrontControl
                                             'post_per_page'=>$posts_per_page,
                                             'pagenums' => $totalpages - 1,
                                             'totalpages' =>$totalpages,
-                                            'page_type' => $page_type
+                                            'page_type' => $page_type,
+                                            'date' => $date,
+                                            'active_month' => $active_month,
+                                            'year' => $year,
+                                            'page' => $page
                                             ));
             
        $template_name  = 'postcategory.tpl';
                
             $this->setTemplate($template_name );        
+    }
+
+    public static function get_months() {
+        $months = array();
+        for( $i = 1; $i <= 12; $i++ ) {
+            $date = date('Y-'.$i);
+
+            $months['month'][$i] = date('F', strtotime($date));
+            $months['year'][$i] = date('Y', strtotime($date));
+        }
+        return $months;
     }
  }

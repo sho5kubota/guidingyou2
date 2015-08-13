@@ -1,6 +1,16 @@
 
 {capture name=path}<a href="{smartblog::GetSmartBlogLink('smartblog')}">{l s='All Blog News' mod='smartblog'}</a><span class="navigation-pipe">{$navigationPipe}</span>{$meta_title}{/capture}
 {assign var=seller value=['id_seller' => $id_author, 'slug' => $seller_alias]}
+
+<div class="row">
+	<div class="col-md-6"></div>
+      <div class="col-md-6 pull-right" style="text-align:right">
+      <a href="{$link->getAgileSellerLink($id_author)}">
+      	<h4><b>{$firstname} {$lastname} {l s='Guide Page' mod='smartblog'}</b></h4>
+      </a>
+      </div>
+</div>
+
 <div id="content" class="block">
    <div itemtype="#" itemscope="" id="sdsblogArticle" class="blog-post">
    		<div class="page-item-title">

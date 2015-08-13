@@ -68,9 +68,20 @@
 			</div> *}
 	    </div>
 
+	    {if empty($blogs)}
+	    <div class="row">
+			<p class="alert alert-warning">{l s='You do not have any blogs registered' mod='smartsellerblog'}</p>
+		</div>
+		{/if}
+
 	</div>
 </div>
+
+
+
+
 {* {include file="$tpl_dir./pagination.tpl"} *}
+{if !empty($blogs)}
 {include file="modules/smartsellerblog/views/templates/front/pagination.tpl"}
 <table id="product-list" class="std">
 	<thead>
@@ -112,3 +123,4 @@
         {/foreach}
         </tbody>
 </table>
+{/if}

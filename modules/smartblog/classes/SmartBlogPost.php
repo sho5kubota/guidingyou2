@@ -667,26 +667,26 @@ class SmartBlogPost extends ObjectModel
         return $result;
     }
     
-    public static function getArchiveResult($month = null,$year = null,$limit_start = 0, $limit = 5){
+    public static function getArchiveResult($month = null,$year = null,$limit_start = 0, $limit = 5, $seller_id = null){
          $BlogCategory = '';
          $result = array();
          $id_lang = (int)Context::getContext()->language->id;
-         if($month != '' and $month != NULL and $year != '' and $year != NULL)
+         if($month != '' and $month != NULL and $year != '' and $year != NULL and $seller_id != '' and $seller_id != NULL)
          {
              $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post s INNER JOIN '._DB_PREFIX_.'smart_blog_post_lang sl ON s.id_smart_blog_post = sl.id_smart_blog_post
                  and sl.id_lang = '.$id_lang.' INNER JOIN '._DB_PREFIX_.'smart_blog_post_shop ps ON ps.id_smart_blog_post = s.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id. '
-            where s.active = 1 and MONTH(s.created) = '.$month.' AND YEAR(s.created) = '.$year.' ORDER BY s.id_smart_blog_post DESC';
-         }elseif($month == '' and $month == NULL and $year != '' and $year != NULL)
+            where s.active = 1 and MONTH(s.created) = '.$month.' AND YEAR(s.created) = '.$year.' AND s.id_author = '.$seller_id.' ORDER BY s.id_smart_blog_post DESC';
+         }elseif($month == '' and $month == NULL and $year != '' and $year != NULL and $seller_id != '' and $seller_id != NULL)
          {
               $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post s INNER JOIN '._DB_PREFIX_.'smart_blog_post_lang sl ON s.id_smart_blog_post = sl.id_smart_blog_post
                  and sl.id_lang = '.$id_lang.' INNER JOIN '._DB_PREFIX_.'smart_blog_post_shop ps ON ps.id_smart_blog_post = s.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id. '
-           where s.active = 1 AND YEAR(s.created) = '.$year.' ORDER BY s.id_smart_blog_post DESC';
+           where s.active = 1 AND YEAR(s.created) = '.$year.' AND s.id_author = '.$seller_id.' ORDER BY s.id_smart_blog_post DESC';
               
-         }elseif($month != '' and $month != NULL and $year == '' and $year == NULL)
+         }elseif($month != '' and $month != NULL and $year == '' and $year == NULL and $seller_id != '' and $seller_id != NULL)
          {
                $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post s INNER JOIN '._DB_PREFIX_.'smart_blog_post_lang sl ON s.id_smart_blog_post = sl.id_smart_blog_post
                  and sl.id_lang = '.$id_lang.' INNER JOIN '._DB_PREFIX_.'smart_blog_post_shop ps ON ps.id_smart_blog_post = s.id_smart_blog_post AND ps.id_shop = '.(int) Context::getContext()->shop->id. '
-           where s.active = 1 AND   MONTH(s.created) = '.$month.'  ORDER BY s.id_smart_blog_post DESC';
+           where s.active = 1 AND   MONTH(s.created) = '.$month.' AND s.id_author = '.$seller_id.' ORDER BY s.id_smart_blog_post DESC';
                
          }else{
              $sql = 'SELECT * FROM '._DB_PREFIX_.'smart_blog_post s INNER JOIN '._DB_PREFIX_.'smart_blog_post_lang sl ON s.id_smart_blog_post = sl.id_smart_blog_post
@@ -713,9 +713,11 @@ class SmartBlogPost extends ObjectModel
                 $result[$i]['cat_link_rewrite'] = $BlogCategory->getCatLinkRewrite($post['id_category']);
                 $employee = new  Employee( $post['id_author']);
                 
+                $result[$i]['id_author'] = $post['id_author'];
+                $result[$i]['seller_alias'] = strtolower($employee->firstname) . '-' . strtolower($employee->lastname);
                 $result[$i]['lastname'] = $employee->lastname;
                 $result[$i]['firstname'] = $employee->firstname;
-                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_smart_blog_post'] . '.jpg') )
+                 if (file_exists(_PS_MODULE_DIR_.'smartblog/images/' . $post['id_author'] . '/' . $post['id_smart_blog_post'] . '.jpg') )
                 {
                    $image =   $post['id_smart_blog_post'];
                    $result[$i]['post_img'] = $image;
@@ -727,8 +729,21 @@ class SmartBlogPost extends ObjectModel
                 $result[$i]['created'] = $post['created'];
                 $i++;
             }
+           
         return $result;
     }
+
+
+    public static function getSellerinfoLang($id_seller) {
+        $query = "SELECT pl.company 
+                  FROM "._DB_PREFIX_."sellerinfo_lang pl
+                  WHERE pl.id_sellerinfo = (SELECT id_sellerinfo FROM "._DB_PREFIX_."sellerinfo WHERE id_seller =".$id_seller.") AND pl.id_lang = 1";
+
+        $info = Db::getInstance()->executeS($query);
+
+        return $info;
+    }
+
     
     public static function getArchiveD($month,$year){
 

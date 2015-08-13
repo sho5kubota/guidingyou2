@@ -60,7 +60,7 @@
 		<script type="text/javascript" src="{$js_dir}fileinput.min.js"></script>
 		<script>new WOW().init();</script>  
 		<link rel="stylesheet" href="{$css_dir}animate.css" type="text/css" />
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+		<link href="{$css_dir}bootstrap-glyphicons.css" rel="stylesheet">
 		<link rel="stylesheet" href="{$css_dir}fileinput.css" type="text/css" />
 		<link rel="stylesheet" href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Open+Sans:300,600&amp;subset=latin,latin-ext" type="text/css" media="all" />
 		<link href="http{if Tools::usingSecureMode()}s{/if}://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel='stylesheet' type='text/css' media="all">
