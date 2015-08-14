@@ -6203,11 +6203,12 @@ h3.page-product-heading {
   font-size: 18px;
   line-height: 20px;
   padding: 14px 20px 17px;
-  margin: 0 0 20px;
+  margin: 50px 0 20px;
   position: relative;
   border-bottom: none;
   background: none;
-border-left:3px solid #11a8ab;  }
+  border-left:3px solid #11a8ab;
+  border-top:3px solid #11a8ab;  }
 
 ul.footer_links {
   padding: 20px 0 0px 0;

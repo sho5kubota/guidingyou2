@@ -494,7 +494,7 @@
 				<h3 class="page-product-heading">{l s='More Info'}</h3>{/if}
 				{if isset($product) && $product->description}
 					<!-- full description -->
-					<div  class="rte" style="padding: 30px">{$product->description}</div>
+					<div  class="rte" style="padding-left: 20px">{$product->description}</div>
 			</section>
 			<!--end  More info -->
 
@@ -503,7 +503,7 @@
 
 		{if $product->description}
 			<!-- MAP -->
-			<section class="page-product-box" style="padding: 30px">
+			<section class="page-product-box">
 				<h3 class="page-product-heading">{l s='Map'}</h3>
 				<div  class="rte">
 
@@ -530,7 +530,7 @@
 
 				</div>
 				<div class="margin-form " >
-    	    		<div class="col-md-8 col-xs-12" id="map_canvas_1" style="min-height:350px;padding:0px;margin:0px;"></div>
+    	    		<div class="col-md-8 col-xs-12" id="map_canvas_1" style="min-height:350px;padding:0px;margin:0 0 0 20px;"></div>
 				
 				</div>
 			    
@@ -539,7 +539,7 @@
 			
 		{/if}
 		<!--HOOK_PRODUCT_TAB -->
-		<section class="page-product-box" style="padding: 30px">
+		<section class="page-product-box" style="padding-top: 30px">
 			{$HOOK_PRODUCT_TAB}
 			{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}{$HOOK_PRODUCT_TAB_CONTENT}{/if}
 		</section>
